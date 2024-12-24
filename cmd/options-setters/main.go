@@ -1,4 +1,4 @@
-package min
+package main
 
 import (
 	"flag"
