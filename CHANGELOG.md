@@ -1,5 +1,20 @@
 # Changelog
 
+# [0.0.4](https://github.com/goliatone/go-generators/compare/v0.0.3...v0.0.4) - (2024-12-24)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.4 ([098319e](https://github.com/goliatone/go-generators/commit/098319e198b38c826e1f47f0718b2af57d1816f6))  - (goliatone)
+
+## <!-- 2 -->🚜 Refactor
+
+- Move run logic to package ([f48c480](https://github.com/goliatone/go-generators/commit/f48c48015203e8316b8e43c45beac1d9a9a156fc))  - (goliatone)
+- Move run logic to package ([9ed4bcc](https://github.com/goliatone/go-generators/commit/9ed4bcc770c81537238059f448dad1fbf5085fc9))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.3 ([f5f188b](https://github.com/goliatone/go-generators/commit/f5f188bfbdb996631f11e909cfd0357396b990a5))  - (goliatone)
+
 # [0.0.3](https://github.com/goliatone/go-generators/compare/v0.0.2...v0.0.3) - (2024-12-24)
 
 ## <!-- 1 -->🐛 Bug Fixes
