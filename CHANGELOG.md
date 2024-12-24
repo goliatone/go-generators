@@ -1,5 +1,19 @@
 # Changelog
 
+# [0.0.3](https://github.com/goliatone/go-generators/compare/v0.0.2...v0.0.3) - (2024-12-24)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Contstructor should use stdout ([df4ede9](https://github.com/goliatone/go-generators/commit/df4ede927fc501a0f111c45d1a7a79735ce7e1a5))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.3 ([9bd4dc7](https://github.com/goliatone/go-generators/commit/9bd4dc7c80f172466a8b4befb1bec6b1cd45a246))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.2 ([793372f](https://github.com/goliatone/go-generators/commit/793372f7451253b47dd69d252482df6de211bc01))  - (goliatone)
+
 # [0.0.2](https://github.com/goliatone/go-generators/compare/v0.0.1...v0.0.2) - (2024-12-24)
 
 ## <!-- 1 -->🐛 Bug Fixes
