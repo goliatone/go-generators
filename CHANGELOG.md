@@ -1,5 +1,19 @@
 # Changelog
 
+# [0.0.2](https://github.com/goliatone/go-generators/compare/v0.0.1...v0.0.2) - (2024-12-24)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Typo in package name ([ccd16e2](https://github.com/goliatone/go-generators/commit/ccd16e2de915a75cc1ca96e067fbfc977a6dc62e))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.2 ([6e3bc7e](https://github.com/goliatone/go-generators/commit/6e3bc7eabf71d9f4a2c23f70829078ce07cde55a))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.1 ([fed1333](https://github.com/goliatone/go-generators/commit/fed13337b899840552c92f9d5ca8ad261cb447f5))  - (goliatone)
+
 # [0.0.1](https://github.com/goliatone/go-generators/tree/v0.0.1) - (2024-12-24)
 
 ## <!-- 13 -->📦 Bumps
