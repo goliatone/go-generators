@@ -2,7 +2,11 @@
 
 package multi
 
-import "io"
+import (
+	http "http"
+	"io"
+	"time"
+)
 
 type WriterGetter interface {
 	GetWriter() io.Writer
