@@ -2,6 +2,11 @@
 
 package complex
 
+import (
+	"context"
+	"time"
+)
+
 type TimeoutGetter interface {
 	GetTimeout() time.Duration
 }
@@ -38,6 +43,18 @@ func WithHandlerSetter(s HandlerGetter) Option {
 	}
 }
 
+type DeadlineGetter interface {
+	GetDeadline() time.Time
+}
+
+func WithDeadlineSetter(s DeadlineGetter) Option {
+	return func(cs *Config) {
+		if s != nil {
+			cs.deadline = s.GetDeadline()
+		}
+	}
+}
+
 // WithConfigurator sets multiple options from
 // a single configuration struct that implements
 // one or more Getter interfaces
@@ -54,6 +71,10 @@ func WithConfigurator(i interface{}) Option {
 
 		if s, ok := i.(HandlerGetter); ok {
 			cs.handler = s.GetHandler()
+		}
+
+		if s, ok := i.(DeadlineGetter); ok {
+			cs.deadline = s.GetDeadline()
 		}
 
 	}

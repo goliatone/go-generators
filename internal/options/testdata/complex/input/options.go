@@ -24,3 +24,9 @@ func WithHandler(h func(error) bool) Option {
 		c.handler = h
 	}
 }
+
+func WithDeadline(d time.Time) Option {
+	return func(r *Config) {
+		r.deadline = d
+	}
+}
