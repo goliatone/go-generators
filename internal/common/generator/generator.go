@@ -28,11 +28,16 @@ type Generator interface {
 type BaseGenerator struct {
 	Writer    io.Writer
 	ToWritter bool
+	Name      string
 }
 
 // NewBaseGenerator creates a new base generator
-func NewBaseGenerator(w io.Writer, t bool) *BaseGenerator {
-	return &BaseGenerator{Writer: w, ToWritter: t}
+func NewBaseGenerator(n string, w io.Writer, t bool) *BaseGenerator {
+	return &BaseGenerator{
+		Name:      n,
+		Writer:    w,
+		ToWritter: t,
+	}
 }
 
 func CollectImports(f *ast.File) []*ast.ImportSpec {
