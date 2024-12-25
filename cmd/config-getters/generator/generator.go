@@ -7,14 +7,14 @@ import (
 	"strings"
 
 	"github.com/goliatone/go-generators/internal/common/generator"
-	"github.com/goliatone/go-generators/internal/options"
+	"github.com/goliatone/go-generators/internal/config"
 )
 
 func Run() {
 	var opts generator.Options
 
-	flag.StringVar(&opts.InputFile, "input", "options.go", "Input file containing the options")
-	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code (default: <input>_setters.go)")
+	flag.StringVar(&opts.InputFile, "input", "config.go", "Input file containing the config structs")
+	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code (default: {input}_getters.go)")
 	flag.Parse()
 
 	if opts.InputFile == "" {
@@ -24,7 +24,7 @@ func Run() {
 	if opts.OutputFile == "" {
 		ext := filepath.Ext(opts.InputFile)
 		basename := strings.TrimSuffix(opts.InputFile, ext)
-		opts.OutputFile = basename + "_setters" + ext
+		opts.OutputFile = basename + "_getters" + ext
 	}
 
 	// Convert to absolute paths
@@ -40,8 +40,8 @@ func Run() {
 	}
 	opts.OutputFile = absOutput
 
-	gen := options.New()
+	gen := config.New()
 	if err := gen.Generate(opts); err != nil {
-		log.Fatalf("Failed to generate setters: %v", err)
+		log.Fatalf("Failed to generate getters: %v", err)
 	}
 }
