@@ -1,5 +1,26 @@
 # Changelog
 
+# [0.0.5](https://github.com/goliatone/go-generators/compare/v0.0.4...v0.0.5) - (2024-12-25)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Add more test cases to catch import path used to fail ([9799229](https://github.com/goliatone/go-generators/commit/979922984698d1a11fef6caf81e7f85c6c4d910a))  - (goliatone)
+- Add more test cases to catch import path used to fail ([f38ddb3](https://github.com/goliatone/go-generators/commit/f38ddb353db030ec9f5344120d4858e9275a3e20))  - (goliatone)
+- Handle import paths better ([60eb9c1](https://github.com/goliatone/go-generators/commit/60eb9c12988b2b94b4deb951544a94815f104c21))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.5 ([fab2739](https://github.com/goliatone/go-generators/commit/fab273940bb32a340434a3bf6333da2d485e4480))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- New test case ([b56cbf2](https://github.com/goliatone/go-generators/commit/b56cbf23644418b3c79facebd170b4c0e3100de8))  - (goliatone)
+- New test case ([853b812](https://github.com/goliatone/go-generators/commit/853b812dfa779f0efbc7b6f21d2326afdb0bda09))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.4 ([5e3ca10](https://github.com/goliatone/go-generators/commit/5e3ca10cf5efdaa373509a80ad3bba3fca88f654))  - (goliatone)
+
 # [0.0.4](https://github.com/goliatone/go-generators/compare/v0.0.3...v0.0.4) - (2024-12-24)
 
 ## <!-- 13 -->📦 Bumps
