@@ -21,6 +21,7 @@ func TestGenerator(t *testing.T) {
 		{name: "basic", pkgName: "basic"},
 		{name: "complex", pkgName: "complex"},
 		{name: "multi", pkgName: "multi"},
+		{name: "runner", pkgName: "runner"},
 	}
 
 	for _, tt := range tests {
