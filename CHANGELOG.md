@@ -1,5 +1,39 @@
 # Changelog
 
+# [0.0.6](https://github.com/goliatone/go-generators/compare/v0.0.5...v0.0.6) - (2024-12-25)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.6 ([ef97d99](https://github.com/goliatone/go-generators/commit/ef97d99b6285a69e5f54b5b4b5380cef66bcd6c3))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Cofig getters generator ([7f3e5d2](https://github.com/goliatone/go-generators/commit/7f3e5d2d60cbfb89c153bc72d0fcbddf13dff641))  - (goliatone)
+- Cofig getters generator ([012cd90](https://github.com/goliatone/go-generators/commit/012cd90f6520f639031acefe53e0a233a6992e15))  - (goliatone)
+- Cofig getters generator ([bdd296d](https://github.com/goliatone/go-generators/commit/bdd296d12af3a7d12e0a854bd415affc7437e740))  - (goliatone)
+- Config-getters cmd ([d815884](https://github.com/goliatone/go-generators/commit/d8158843d7faac056297b3971ed1d075f76d2199))  - (goliatone)
+- Config-getters cmd ([44383a0](https://github.com/goliatone/go-generators/commit/44383a0f2cfe6c0f7cb80797a0e39e481bdbf9cc))  - (goliatone)
+
+## <!-- 2 -->🚜 Refactor
+
+- Move common functions to base generator ([a119460](https://github.com/goliatone/go-generators/commit/a119460a9867b6c4993366b7f1a31d1ff66430fd))  - (goliatone)
+- Move common functions to base generator ([6556bfa](https://github.com/goliatone/go-generators/commit/6556bfafd862c5ffe523ca18888535a08b824af9))  - (goliatone)
+- Move common functions to base generator ([bf75f8f](https://github.com/goliatone/go-generators/commit/bf75f8f9fe8501b62f87a944e6d9b5e96629406b))  - (goliatone)
+- Remove package opt ([69ebc3a](https://github.com/goliatone/go-generators/commit/69ebc3a06a0803f9f18eb199510aafa01ba6f2c0))  - (goliatone)
+- Remove package opt ([78b7846](https://github.com/goliatone/go-generators/commit/78b7846d39459603bd1291285b8da49890f8175b))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.5 ([fd516b3](https://github.com/goliatone/go-generators/commit/fd516b35c7a53cf3060bb889750135dcbc50cbc9))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#1](https://github.com/goliatone/go-generators/pull/1): config getters generator ([159b152](https://github.com/goliatone/go-generators/commit/159b152b9d270ec3d0bf604d4e729127b2d23e8f))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update readme ([84a32d9](https://github.com/goliatone/go-generators/commit/84a32d94fc32802b0c572f049ce8eaceb556b01f))  - (goliatone)
+
 # [0.0.5](https://github.com/goliatone/go-generators/compare/v0.0.4...v0.0.5) - (2024-12-25)
 
 ## <!-- 1 -->🐛 Bug Fixes
