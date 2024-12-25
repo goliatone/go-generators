@@ -15,7 +15,6 @@ func Run() {
 
 	flag.StringVar(&opts.InputFile, "input", "options.go", "Input file containing the options")
 	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code (default: <input>_setters.go)")
-	flag.StringVar(&opts.PackageName, "package", "", "Package name for generated code (default: derived from input file)")
 	flag.Parse()
 
 	if opts.InputFile == "" {
