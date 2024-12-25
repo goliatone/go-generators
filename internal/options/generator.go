@@ -69,13 +69,7 @@ func (g *Generator) generateSetters(opts generator.Options) error {
 		optionReceiverType: optionType,
 	}
 
-	// Determine package name
-	pkg := node.Name.Name
-	if opts.PackageName != "" {
-		pkg = opts.PackageName
-	}
-
-	// Collect option functions information
+	// collect option functions information
 	options := make([]optionInfo, 0)
 	ast.Inspect(node, func(n ast.Node) bool {
 		if funcDecl, ok := n.(*ast.FuncDecl); ok {
@@ -91,7 +85,7 @@ func (g *Generator) generateSetters(opts generator.Options) error {
 
 	imports := collectImports(node)
 
-	f := jen.NewFile(pkg)
+	f := jen.NewFile(node.Name.Name)
 
 	// This comment triggers a pop-up notice in VS Code reminding you to
 	// not edit the code. Nice!
@@ -126,6 +120,7 @@ func (g *Generator) generateSetters(opts generator.Options) error {
 	f.Line()
 
 	// If we provided a writer, we output there.
+	// e.g. in tests to generate golden files
 	if g.ToWritter {
 		return f.Render(g.Writer)
 	}
@@ -163,7 +158,7 @@ func parseOptionFunc(funcDecl *ast.FuncDecl) *optionInfo {
 	}
 
 	if len(funcDecl.Type.Params.List) != 1 {
-		return nil // We only deal with functions that have a single param
+		return nil // only deal with functions that have a single param
 	}
 	param := funcDecl.Type.Params.List[0]
 
