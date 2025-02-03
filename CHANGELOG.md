@@ -1,5 +1,31 @@
 # Changelog
 
+# [0.4.0](https://github.com/goliatone/go-generators/compare/v0.3.0...v0.4.0) - (2025-02-03)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Make output optional ([8ee4191](https://github.com/goliatone/go-generators/commit/8ee41911976c2bf2cb5e6adcdd0f8344bb7f0f1e))  - (goliatone)
+- Sort keys to ensure deterministic output ([e0b816e](https://github.com/goliatone/go-generators/commit/e0b816e9b4905b8b08da7c7338a74735473d624e))  - (goliatone)
+- Update test data to be determinitstic ([4e2683b](https://github.com/goliatone/go-generators/commit/4e2683b51b13c408166e6e9479d0a27a6bcb2e07))  - (goliatone)
+- Update test data to be determinitstic ([d36c73b](https://github.com/goliatone/go-generators/commit/d36c73bf9faa4821e6670176de65e572bba29694))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.4.0 ([21dc4f4](https://github.com/goliatone/go-generators/commit/21dc4f4ac97ab9737fda8f9e61d7b59571d650e7))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.3.0 ([796e97e](https://github.com/goliatone/go-generators/commit/796e97edf712088a29bc56d4656aaae6a4ad300b))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#4](https://github.com/goliatone/go-generators/pull/4): generated output ([1464726](https://github.com/goliatone/go-generators/commit/1464726acad219283fdefd6900b4827338479336))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update tests ([fd0becf](https://github.com/goliatone/go-generators/commit/fd0becf42e201ced1a3fb960e95bf93d261aa941))  - (goliatone)
+- Update tests ([4d4c781](https://github.com/goliatone/go-generators/commit/4d4c78163478a6d3401996d8c57264dec49eaaa0))  - (goliatone)
+
 # [0.3.0](https://github.com/goliatone/go-generators/compare/v0.2.0...v0.3.0) - (2025-02-03)
 
 ## <!-- 1 -->🐛 Bug Fixes
