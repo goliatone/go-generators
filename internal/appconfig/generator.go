@@ -2,9 +2,11 @@ package appconfig
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
+	"sort"
 
 	"github.com/dave/jennifer/jen"
 	"github.com/ettle/strcase"
@@ -83,24 +85,32 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 		delete(types, "Config")
 	}
 
-	for _, def := range types {
-		generateStruct(f, def)
+	var typeNames []string
+	for tName := range types {
+		typeNames = append(typeNames, tName)
+	}
+	sort.Strings(typeNames)
+	for _, tName := range typeNames {
+		generateStruct(f, types[tName])
+	}
+
+	if opts.OutputFile != "" {
+		if err := common.CreateOutputDir(opts.OutputFile); err != nil {
+			return fmt.Errorf("failed to create output directory: %v", err)
+		}
+
+		if err := common.CreateOutputFile(opts.OutputFile, f); err != nil {
+			return fmt.Errorf("failed to render code: %v", err)
+		}
+		fmt.Printf("Successfully generated config structs in %s\n", opts.OutputFile)
+		return nil
 	}
 
 	if g.ToWritter {
 		return f.Render(g.Writer)
 	}
 
-	if err := common.CreateOutputDir(opts.OutputFile); err != nil {
-		return fmt.Errorf("failed to create output directory: %v", err)
-	}
-
-	if err := common.CreateOutputFile(opts.OutputFile, f); err != nil {
-		return fmt.Errorf("failed to render code: %v", err)
-	}
-
-	fmt.Printf("Successfully generated config structs in %s\n", opts.OutputFile)
-	return nil
+	return errors.New("writer was not specified, nor the output path")
 }
 
 // StructDef represents a Go struct definition
@@ -128,6 +138,12 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		Fields: []FieldDef{},
 	}
 	types[typeName] = def
+
+	keys := make([]string, 0, len(obj))
+	for k := range obj {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
 
 	for key, val := range obj {
 		fieldName := toCamel(key)
@@ -165,6 +181,10 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 			JSONKey:   key,
 		})
 	}
+
+	sort.Slice(def.Fields, func(i, j int) bool {
+		return def.Fields[i].FieldName < def.Fields[j].FieldName
+	})
 }
 
 // inferBasicType returns the Go type for a given JSON primitive
