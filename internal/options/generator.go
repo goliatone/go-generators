@@ -36,7 +36,9 @@ type generatorContext struct {
 
 // New creates a new options-setters generator that writes to stdout
 func New() *Generator {
-	return NewWithWriter(os.Stdout)
+	return &Generator{
+		BaseGenerator: common.NewBaseGenerator("options-setters", os.Stdout, false),
+	}
 }
 
 // New creates a new options-setters generator with the provided writer
