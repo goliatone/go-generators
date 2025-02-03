@@ -15,7 +15,7 @@ func Run() {
 
 	flag.StringVar(&opts.InputFile, "input", "config.go", "Input file containing the config structs")
 	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code (default: {input}_getters.go)")
-	flag.StringVar(&opts.PackageName, "pkg", "", "Package name for generated code (default: same as input file)")
+	flag.StringVar(&opts.PackageName, "pkg", "config", "Package name for generated code (default: config)")
 	flag.Parse()
 
 	if opts.InputFile == "" {
