@@ -1,5 +1,25 @@
 # Changelog
 
+# [0.3.0](https://github.com/goliatone/go-generators/compare/v0.2.0...v0.3.0) - (2025-02-03)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Use go pascal case for struct naming ([c49a40e](https://github.com/goliatone/go-generators/commit/c49a40e3b010c32516e852a85b5d5912ce496e30))  - (goliatone)
+- Use go pascal case for struct naming ([d88b70b](https://github.com/goliatone/go-generators/commit/d88b70b75e20e550449e85c81b8e6d87f22459b1))  - (goliatone)
+- Use go pascal case for struct naming ([6037624](https://github.com/goliatone/go-generators/commit/6037624b3ddc91bcba149b5a667460f2121d466c))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.3.0 ([f3778f2](https://github.com/goliatone/go-generators/commit/f3778f2d3f3aa5d32d875b4a5dc4f60666911c1f))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#3](https://github.com/goliatone/go-generators/pull/3): casing ([8bc6079](https://github.com/goliatone/go-generators/commit/8bc60795f8e3e42ed3a5dfb4941cfca8e186bb24))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update changelog ([284d6a2](https://github.com/goliatone/go-generators/commit/284d6a2a4d9c2c27546898373f12a26b8b411644))  - (goliatone)
+
 # [0.2.0](https://github.com/goliatone/go-generators/compare/v0.1.0...v0.2.0) - (2025-02-03)
 
 ## <!-- 13 -->📦 Bumps
