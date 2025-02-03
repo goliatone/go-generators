@@ -1,0 +1,21 @@
+{
+    "database": {
+        "dsn": "file:test.db?cache=shared",
+        "debug": true,
+        "driver": "sqlite",
+        "server": "file"
+    },
+    "auth": {
+        "enabled": true,
+        "users": [
+            {
+                "username": "admin",
+                "password": "pwd"
+            }
+        ]
+    },
+    "views": {
+        "dir": "./views",
+        "extension": ".html"
+    }
+}
