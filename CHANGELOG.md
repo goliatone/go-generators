@@ -1,5 +1,26 @@
 # Changelog
 
+# [0.5.0](https://github.com/goliatone/go-generators/compare/v0.4.0...v0.5.0) - (2025-02-03)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- General options ([f8f57b1](https://github.com/goliatone/go-generators/commit/f8f57b19cd7e1a5b88c03d3f5571b1a5b588f2b2))  - (goliatone)
+- General options ([b91b8e8](https://github.com/goliatone/go-generators/commit/b91b8e844a8a5c71c271448038402607f3a72d1a))  - (goliatone)
+- General options ([712e9ca](https://github.com/goliatone/go-generators/commit/712e9ca96308fcfb599a12269b85c77db35b8f08))  - (goliatone)
+- General options ([93f46bf](https://github.com/goliatone/go-generators/commit/93f46bfe6f5c36a1098ba341ff72d0bf174bd939))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.5.0 ([48d99dc](https://github.com/goliatone/go-generators/commit/48d99dc6ed14d572f8ded39e37c32805da46989b))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.4.0 ([50587b5](https://github.com/goliatone/go-generators/commit/50587b5eca7b133c0cf9e00fc5dcb9009ed6dcd9))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#5](https://github.com/goliatone/go-generators/pull/5): options ([237a398](https://github.com/goliatone/go-generators/commit/237a398d5b13cd15ae72d7b491a39251a9018692))  - (goliatone)
+
 # [0.4.0](https://github.com/goliatone/go-generators/compare/v0.3.0...v0.4.0) - (2025-02-03)
 
 ## <!-- 1 -->🐛 Bug Fixes
