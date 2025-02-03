@@ -4,7 +4,6 @@ import (
 	"flag"
 	"log"
 	"path/filepath"
-	"strings"
 
 	"github.com/goliatone/go-generators/internal/appconfig"
 	"github.com/goliatone/go-generators/internal/common/generator"
@@ -14,18 +13,12 @@ func Run() {
 	var opts generator.Options
 
 	flag.StringVar(&opts.InputFile, "input", "config.go", "Input file containing the config structs")
-	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code (default: {input}_getters.go)")
+	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code")
 	flag.StringVar(&opts.PackageName, "pkg", "config", "Package name for generated code (default: config)")
 	flag.Parse()
 
 	if opts.InputFile == "" {
 		log.Fatal("Input file must be specified")
-	}
-
-	if opts.OutputFile == "" {
-		ext := filepath.Ext(opts.InputFile)
-		basename := strings.TrimSuffix(opts.InputFile, ext)
-		opts.OutputFile = basename + "_getters" + ext
 	}
 
 	// Convert to absolute paths

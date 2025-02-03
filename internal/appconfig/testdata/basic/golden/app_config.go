@@ -7,8 +7,9 @@ type Config struct {
 }
 
 type Database struct {
-	Dsn    string `koanf:"dsn"`
-	Debug  bool   `koanf:"debug"`
-	Driver string `koanf:"driver"`
-	Server string `koanf:"server"`
+	Debug      bool   `koanf:"debug"`
+	DefaultTTL string `koanf:"default_ttl"`
+	Driver     string `koanf:"driver"`
+	Dsn        string `koanf:"dsn"`
+	Server     string `koanf:"server"`
 }
