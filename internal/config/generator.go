@@ -32,7 +32,9 @@ type fieldInfo struct {
 
 // New creates a new config-getters generator that writes to stdout
 func New() *Generator {
-	return NewWithWriter(os.Stdout)
+	return &Generator{
+		BaseGenerator: common.NewBaseGenerator("config-getters", os.Stdout, false),
+	}
 }
 
 // New creates a new config-getters generator with the provided writer
