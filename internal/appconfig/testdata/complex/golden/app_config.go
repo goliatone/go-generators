@@ -8,19 +8,14 @@ type Config struct {
 	Views    Views    `koanf:"views"`
 }
 
-type Auth struct {
-	Enabled bool   `koanf:"enabled"`
-	Users   []User `koanf:"users"`
-}
-
 type User struct {
 	Username string `koanf:"username"`
 	Password string `koanf:"password"`
 }
 
 type Views struct {
-	Dir       string `koanf:"dir"`
-	Extension string `koanf:"extension"`
+	Dir           string `koanf:"dir"`
+	FileExtension string `koanf:"file_extension"`
 }
 
 type Database struct {
@@ -28,4 +23,10 @@ type Database struct {
 	Debug  bool   `koanf:"debug"`
 	Driver string `koanf:"driver"`
 	Server string `koanf:"server"`
+}
+
+type Auth struct {
+	Enabled    bool   `koanf:"enabled"`
+	SessionTTL string `koanf:"session_ttl"`
+	Users      []User `koanf:"users"`
 }

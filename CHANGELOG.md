@@ -1,5 +1,49 @@
 # Changelog
 
+# [0.2.0](https://github.com/goliatone/go-generators/compare/v0.1.0...v0.2.0) - (2025-02-03)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.2.0 ([eab9844](https://github.com/goliatone/go-generators/commit/eab9844062cd0c673341eeb202f8b16b764a9322))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#2](https://github.com/goliatone/go-generators/pull/2): config generator ([d49ae5a](https://github.com/goliatone/go-generators/commit/d49ae5ac180904204226c47cde01ee2a0b519f5f))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update deps ([92bd7aa](https://github.com/goliatone/go-generators/commit/92bd7aa01baa24b999c3915eb245644ba8a28605))  - (goliatone)
+
+# [0.1.0](https://github.com/goliatone/go-generators/compare/v0.0.6...v0.1.0) - (2025-02-03)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Make config default package ([25874ee](https://github.com/goliatone/go-generators/commit/25874eec781ed7edb5d317f2689b5f68da189a42))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.1.0 ([b7cb8a1](https://github.com/goliatone/go-generators/commit/b7cb8a12459a8e01fbe15da90eba32a48fb1d332))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- App config generator ([8cdd1a9](https://github.com/goliatone/go-generators/commit/8cdd1a98c42adef24d63069c97c3735d4476d73a))  - (goliatone)
+- App config generator ([e795941](https://github.com/goliatone/go-generators/commit/e795941e8e9333c61e4c24812abde23358f952a8))  - (goliatone)
+- App config generator ([7a160d3](https://github.com/goliatone/go-generators/commit/7a160d3bfa6be822ee79d2eb50f63f73a28f327e))  - (goliatone)
+- App config generator ([2608f75](https://github.com/goliatone/go-generators/commit/2608f7517d0e1a7e7ad7c7806162d0a667cff007))  - (goliatone)
+- App config generator ([72afa4d](https://github.com/goliatone/go-generators/commit/72afa4dfab3142ed32f3b443890db918f13218a3))  - (goliatone)
+- Update release task ([af08202](https://github.com/goliatone/go-generators/commit/af08202fe4d81f1ec530fc82ade1d508aecb22c8))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.6 ([0e98021](https://github.com/goliatone/go-generators/commit/0e98021e6fa59e74b1a2e276b0e9b103c4c3cf5d))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update readme ([18bb8b5](https://github.com/goliatone/go-generators/commit/18bb8b51dc751b4be4f500e05a54834472254188))  - (goliatone)
+- Normalize code strc ([d99f9db](https://github.com/goliatone/go-generators/commit/d99f9dbcf8327978c3b7c3c223449ffe2b911983))  - (goliatone)
+- Normalize code strcure ([c1266cf](https://github.com/goliatone/go-generators/commit/c1266cfeee392cab497c386962fb0ab3f11394e0))  - (goliatone)
+- Update deps ([13b8142](https://github.com/goliatone/go-generators/commit/13b8142da9fc28e40c2620393ec92d2a4dc86a70))  - (goliatone)
+
 # [0.0.6](https://github.com/goliatone/go-generators/compare/v0.0.5...v0.0.6) - (2024-12-25)
 
 ## <!-- 13 -->📦 Bumps

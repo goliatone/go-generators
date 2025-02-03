@@ -198,7 +198,7 @@ func toCamel(s string) string {
 	if s == "" {
 		return ""
 	}
-	return strcase.ToGoCase(s, strcase.TitleCase, ' ')
+	return strcase.ToGoPascal(s)
 }
 
 func singularize(s string) string {

@@ -7,6 +7,7 @@
     },
     "auth": {
         "enabled": true,
+        "session_ttl": "24h",
         "users": [
             {
                 "username": "admin",
@@ -16,6 +17,6 @@
     },
     "views": {
         "dir": "./views",
-        "extension": ".html"
+        "file_extension": ".html"
     }
 }
