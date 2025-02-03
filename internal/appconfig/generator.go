@@ -2,7 +2,6 @@ package appconfig
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -23,7 +22,9 @@ type Generator struct {
 
 // New creates a new app-config generator that writes to stdout
 func New() *Generator {
-	return NewWithWriter(os.Stdout)
+	return &Generator{
+		BaseGenerator: common.NewBaseGenerator("app-config", os.Stdout, false),
+	}
 }
 
 // NewWithWriter creates a new app-config generator with the provided writer
@@ -94,23 +95,20 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 		generateStruct(f, types[tName])
 	}
 
-	if opts.OutputFile != "" {
-		if err := common.CreateOutputDir(opts.OutputFile); err != nil {
-			return fmt.Errorf("failed to create output directory: %v", err)
-		}
-
-		if err := common.CreateOutputFile(opts.OutputFile, f); err != nil {
-			return fmt.Errorf("failed to render code: %v", err)
-		}
-		fmt.Printf("Successfully generated config structs in %s\n", opts.OutputFile)
-		return nil
-	}
-
 	if g.ToWritter {
 		return f.Render(g.Writer)
 	}
 
-	return errors.New("writer was not specified, nor the output path")
+	if err := common.CreateOutputDir(opts.OutputFile); err != nil {
+		return fmt.Errorf("failed to create output directory: %v", err)
+	}
+
+	if err := common.CreateOutputFile(opts.OutputFile, f); err != nil {
+		return fmt.Errorf("failed to render code: %v", err)
+	}
+
+	fmt.Printf("Successfully generated setters in %s\n", opts.OutputFile)
+	return nil
 }
 
 // StructDef represents a Go struct definition
