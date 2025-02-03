@@ -4,29 +4,29 @@ package appconfig_complex
 
 type Config struct {
 	Auth     Auth     `koanf:"auth"`
-	Views    Views    `koanf:"views"`
 	Database Database `koanf:"database"`
+	Views    Views    `koanf:"views"`
 }
 
 type Auth struct {
-	Users      []User `koanf:"users"`
 	Enabled    bool   `koanf:"enabled"`
 	SessionTTL string `koanf:"session_ttl"`
+	Users      []User `koanf:"users"`
+}
+
+type Database struct {
+	Debug  bool   `koanf:"debug"`
+	Driver string `koanf:"driver"`
+	Dsn    string `koanf:"dsn"`
+	Server string `koanf:"server"`
 }
 
 type User struct {
-	Username string `koanf:"username"`
 	Password string `koanf:"password"`
+	Username string `koanf:"username"`
 }
 
 type Views struct {
 	Dir           string `koanf:"dir"`
 	FileExtension string `koanf:"file_extension"`
-}
-
-type Database struct {
-	Dsn    string `koanf:"dsn"`
-	Debug  bool   `koanf:"debug"`
-	Driver string `koanf:"driver"`
-	Server string `koanf:"server"`
 }
