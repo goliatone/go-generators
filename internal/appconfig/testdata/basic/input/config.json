@@ -3,6 +3,7 @@
         "dsn": "file:test.db?cache=shared",
         "debug": true,
         "driver": "sqlite",
-        "server": "file"
+        "server": "file",
+        "default_ttl": "24h"
     }
 }
