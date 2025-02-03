@@ -1,0 +1,8 @@
+{
+   "database": {
+        "dsn": "file:test.db?cache=shared",
+        "debug": true,
+        "driver": "sqlite",
+        "server": "file"
+    }
+}
