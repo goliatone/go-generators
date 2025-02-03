@@ -3,9 +3,15 @@
 package appconfig_complex
 
 type Config struct {
-	Database Database `koanf:"database"`
 	Auth     Auth     `koanf:"auth"`
 	Views    Views    `koanf:"views"`
+	Database Database `koanf:"database"`
+}
+
+type Auth struct {
+	Users      []User `koanf:"users"`
+	Enabled    bool   `koanf:"enabled"`
+	SessionTTL string `koanf:"session_ttl"`
 }
 
 type User struct {
@@ -23,10 +29,4 @@ type Database struct {
 	Debug  bool   `koanf:"debug"`
 	Driver string `koanf:"driver"`
 	Server string `koanf:"server"`
-}
-
-type Auth struct {
-	Enabled    bool   `koanf:"enabled"`
-	SessionTTL string `koanf:"session_ttl"`
-	Users      []User `koanf:"users"`
 }
