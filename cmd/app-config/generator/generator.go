@@ -13,12 +13,16 @@ func Run() {
 	var opts generator.Options
 
 	flag.StringVar(&opts.InputFile, "input", "config.go", "Input file containing the config structs")
-	flag.StringVar(&opts.OutputFile, "output", "", "Output file for generated code")
+	flag.StringVar(&opts.OutputFile, "output", "config_structs.go", "Output file for generated code (default: config_structs.go)")
 	flag.StringVar(&opts.PackageName, "pkg", "config", "Package name for generated code (default: config)")
 	flag.Parse()
 
 	if opts.InputFile == "" {
 		log.Fatal("Input file must be specified")
+	}
+
+	if opts.OutputFile == "" {
+		opts.OutputFile = "config_structs.go"
 	}
 
 	// Convert to absolute paths
