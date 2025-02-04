@@ -16,14 +16,17 @@ var update = flag.Bool("update", false, "update golden files")
 
 func TestGenerator(t *testing.T) {
 	tests := []struct {
-		name    string
-		pkgName string
+		name      string
+		pkgName   string
+		inputFile string
 	}{
 		// The test directories (under testdata) must be set up with
 		// an input JSON file (e.g. input/config.json) and the expected
 		// generated file in golden (e.g. golden/app_config.go).
-		{name: "basic", pkgName: "appconfig"},
-		{name: "complex", pkgName: "appconfig_complex"},
+		{name: "basic", pkgName: "appconfig", inputFile: "config.json"},
+		{name: "complex", pkgName: "appconfig_complex", inputFile: "config.json"},
+		{name: "yaml", pkgName: "main", inputFile: "config.yml"},
+		{name: "toml", pkgName: "main", inputFile: "config.toml"},
 	}
 
 	for _, tt := range tests {
@@ -40,7 +43,7 @@ func TestGenerator(t *testing.T) {
 			}
 
 			// Define the input JSON file and golden output file paths.
-			inputFile := filepath.Join(inputDir, "config.json")
+			inputFile := filepath.Join(inputDir, tt.inputFile)
 			goldenFile := filepath.Join(goldenDir, "app_config.go")
 
 			// Generate code using our app-config generator.
