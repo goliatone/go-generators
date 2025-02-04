@@ -146,6 +146,7 @@ func generateStructGetters(f *jen.File, st structInfo) {
 			Id(fmt.Sprintf("Get%s", field.name)).
 			Params().
 			Id(field.typeName).
+			// Type().Add(jen.Qual("", field.typeName)).
 			Block(
 				jen.Return(jen.Id(strings.ToLower(st.name[0:1])).Dot(field.name)),
 			)
@@ -160,7 +161,35 @@ func getFieldTypeName(expr ast.Expr) string {
 	case *ast.StarExpr:
 		return "*" + getFieldTypeName(t.X)
 	case *ast.SelectorExpr:
-		return fmt.Sprintf("%s.%s", t.X.(*ast.Ident).Name, t.Sel.Name)
+		// qualified types like pkg.Type
+		if pkgIdent, ok := t.X.(*ast.Ident); ok {
+			return fmt.Sprintf("%s.%s", pkgIdent.Name, t.Sel.Name)
+		}
+		return t.Sel.Name
+	case *ast.ArrayType:
+		return "[]" + getFieldTypeName(t.Elt)
+	case *ast.MapType:
+		return fmt.Sprintf("map[%s]%s", getFieldTypeName(t.Key), getFieldTypeName(t.Value))
+	case *ast.InterfaceType:
+		//  "any" for empty interface
+		if len(t.Methods.List) == 0 {
+			return "any"
+		}
+		// TODO: non empty interface, implement
+		return "interface{...}"
+	case *ast.FuncType:
+		return common.FormatFuncType(t)
+	case *ast.ChanType:
+		var dir string
+		switch t.Dir {
+		case ast.SEND:
+			dir = "chan<- "
+		case ast.RECV:
+			dir = "<-chan "
+		default:
+			dir = "chan "
+		}
+		return dir + getFieldTypeName(t.Value)
 	default:
 		return ""
 	}

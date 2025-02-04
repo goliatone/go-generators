@@ -155,7 +155,7 @@ func parseOptionFunc(funcDecl *ast.FuncDecl) *optionInfo {
 	}
 
 	// Extract parameter type
-	paramType, importPath, typePkg := extractTypeInfo(param.Type)
+	paramType, importPath, typePkg := common.ExtractTypeInfo(param.Type)
 
 	return &optionInfo{
 		name:       funcDecl.Name.Name,
@@ -165,70 +165,6 @@ func parseOptionFunc(funcDecl *ast.FuncDecl) *optionInfo {
 		importPath: importPath,
 		typePkg:    typePkg,
 	}
-}
-
-func extractTypeInfo(expr ast.Expr) (paramType, importPath, typePkg string) {
-	switch t := expr.(type) {
-	case *ast.StarExpr: // (*Type)
-		baseType, baseImport, basePkg := extractTypeInfo(t.X)
-		return "*" + baseType, baseImport, basePkg
-	case *ast.SelectorExpr: //  (pkg.Type)
-		if ident, ok := t.X.(*ast.Ident); ok {
-			typePkg = ident.Name
-			importPath = typePkg //NOTE: We assume last segment is the package name!
-			return typePkg + "." + t.Sel.Name, importPath, typePkg
-		}
-
-	case *ast.Ident: // (Type)
-		return t.Name, "", ""
-	case *ast.FuncType:
-		return formatFuncType(t), "", ""
-	}
-
-	return "", "", ""
-}
-
-func formatFuncType(fType *ast.FuncType) string {
-	var params, returns []string
-
-	if fType.Params != nil {
-		for _, param := range fType.Params.List {
-			paramType, _, _ := extractTypeInfo(param.Type)
-			if len(param.Names) > 0 {
-				for range param.Names {
-					params = append(params, paramType)
-				}
-			} else {
-				params = append(params, paramType)
-			}
-		}
-	}
-
-	if fType.Results != nil {
-		for _, result := range fType.Results.List {
-			returnType, _, _ := extractTypeInfo(result.Type)
-			if len(result.Names) > 0 {
-				for range result.Names {
-					returns = append(returns, returnType)
-				}
-			} else {
-				returns = append(returns, returnType)
-			}
-		}
-	}
-
-	funcStr := "func("
-	funcStr += strings.Join(params, ", ")
-	funcStr += ")"
-	if len(returns) > 0 {
-		if len(returns) == 1 {
-			funcStr += " " + returns[0]
-		} else {
-			funcStr += " (" + strings.Join(returns, ", ") + ")"
-		}
-	}
-
-	return funcStr
 }
 
 func generateInterface(f *jen.File, opt optionInfo) {

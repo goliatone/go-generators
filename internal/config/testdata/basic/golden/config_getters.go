@@ -8,7 +8,7 @@ func (c Config) GetLogger() Logger {
 	return c.Logger
 }
 
-func (c Config) GetDatabase() Database {
+func (c Config) GetDatabase() *Database {
 	return c.Database
 }
 
@@ -30,4 +30,20 @@ func (d Database) GetDNS() string {
 
 func (d Database) GetDebug() bool {
 	return d.Debug
+}
+
+func (d Database) GetClusterIPs() []string {
+	return d.ClusterIPs
+}
+
+func (d Database) GetMetadata() map[string]any {
+	return d.Metadata
+}
+
+func (d Database) GetAny() any {
+	return d.Any
+}
+
+func (d Database) GetNullTest() psql.Null {
+	return d.NullTest
 }

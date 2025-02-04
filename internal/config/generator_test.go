@@ -11,7 +11,8 @@ import (
 	"github.com/goliatone/go-generators/internal/common/generator"
 )
 
-// go test ./internal/config/... -update will generate golden files
+// To generate golden files
+// go test ./internal/config/... -update
 var update = flag.Bool("update", false, "update golden files")
 
 func TestGenerator(t *testing.T) {
