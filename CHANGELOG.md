@@ -1,5 +1,31 @@
 # Changelog
 
+# [0.7.0](https://github.com/goliatone/go-generators/compare/v0.6.0...v0.7.0) - (2025-02-04)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Add missing updated mod file ([b2c6514](https://github.com/goliatone/go-generators/commit/b2c65149da427b5d7f0c01627290a5aaa98cc31a))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.7.0 ([0cdfed0](https://github.com/goliatone/go-generators/commit/0cdfed0ee353c3caddb861dfb54876a84ee3dd07))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Handle different file formats for config ([0f948fc](https://github.com/goliatone/go-generators/commit/0f948fc62c4c14cd570f1ae078f14fe0328f3626))  - (goliatone)
+- Handle different file formats for config ([dc38695](https://github.com/goliatone/go-generators/commit/dc386952e5e923b2672022e234340ab7a4c0dfac))  - (goliatone)
+- Test TOML for app config ([76229bb](https://github.com/goliatone/go-generators/commit/76229bb0c5f6c6aa9c0bc4e3de3ab83e7417e703))  - (goliatone)
+- Test TOML for app config ([48bdcf9](https://github.com/goliatone/go-generators/commit/48bdcf939b7fb57df7f09c4b86a98fa4aa1c259b))  - (goliatone)
+- Test data for YML config files ([9f0ac87](https://github.com/goliatone/go-generators/commit/9f0ac87bc0e0f486d635f29838a95d3312e1cb74))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.6.0 ([8f5e486](https://github.com/goliatone/go-generators/commit/8f5e486e4db8f0fbe45416fd04df7e6ef3890e59))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#7](https://github.com/goliatone/go-generators/pull/7): file formats ([4be6778](https://github.com/goliatone/go-generators/commit/4be6778320a5be538b31dd6917a98c2a821d1ec3))  - (goliatone)
+
 # [0.6.0](https://github.com/goliatone/go-generators/compare/v0.5.0...v0.6.0) - (2025-02-04)
 
 ## <!-- 1 -->🐛 Bug Fixes
