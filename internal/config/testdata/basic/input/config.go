@@ -11,6 +11,7 @@ type Logger struct {
 }
 
 type Database struct {
-	DNS   string
-	Debug bool
+	DNS        string
+	Debug      bool
+	ClusterIPs []string
 }
