@@ -146,6 +146,7 @@ func generateStructGetters(f *jen.File, st structInfo) {
 			Id(fmt.Sprintf("Get%s", field.name)).
 			Params().
 			Id(field.typeName).
+			// Type().Add(jen.Qual("", field.typeName)).
 			Block(
 				jen.Return(jen.Id(strings.ToLower(st.name[0:1])).Dot(field.name)),
 			)
