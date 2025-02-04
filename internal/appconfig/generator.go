@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"sort"
 
+	"github.com/BurntSushi/toml"
 	"github.com/dave/jennifer/jen"
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
+	"gopkg.in/yaml.v3"
 )
 
 var pluralizer = pluralize.NewClient()
@@ -35,17 +38,33 @@ func NewWithWriter(w io.Writer) *Generator {
 }
 
 func unmarshalFile(filepath string) (any, error) {
-	data, err := os.ReadFile(filepath)
+	raw, err := os.ReadFile(filepath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read input file: %v", err)
 	}
 
-	var jsonData any
-	if err := json.Unmarshal(data, &jsonData); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
+	var data any
+
+	// check for file extension
+	ext := path.Ext(filepath)
+	switch ext {
+	case ".json":
+		if err := json.Unmarshal(raw, &data); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
+		}
+	case ".yml", ".yaml":
+		if err := yaml.Unmarshal(raw, &data); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal YAML: %v", err)
+		}
+	case ".toml":
+		if err := toml.Unmarshal(raw, &data); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
+		}
+	default:
+		return nil, fmt.Errorf("unknown extension: %s", ext)
 	}
 
-	return jsonData, nil
+	return data, nil
 }
 
 // Generate implements the Generator interface
@@ -54,14 +73,13 @@ func (g *Generator) Generate(opts common.Options) error {
 }
 
 func (g *Generator) generateAppConfig(opts common.Options) error {
-
-	jsonData, err := unmarshalFile(opts.InputFile)
+	data, err := unmarshalFile(opts.InputFile)
 	if err != nil {
 		return err
 	}
 
 	// we expect a top-level JSON object
-	rootObj, ok := jsonData.(map[string]any)
+	rootObj, ok := data.(map[string]any)
 	if !ok {
 		return fmt.Errorf("expected top-level JSON object")
 	}
