@@ -2,7 +2,7 @@ package config
 
 type Config struct {
 	Logger   Logger
-	Database Database
+	Database *Database
 }
 
 type Logger struct {
@@ -14,4 +14,7 @@ type Database struct {
 	DNS        string
 	Debug      bool
 	ClusterIPs []string
+	Metadata   map[string]any
+	Any        any
+	NullTest   psql.Null
 }
