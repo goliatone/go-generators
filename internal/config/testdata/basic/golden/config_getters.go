@@ -31,3 +31,7 @@ func (d Database) GetDNS() string {
 func (d Database) GetDebug() bool {
 	return d.Debug
 }
+
+func (d Database) GetClusterIPs() []string {
+	return d.ClusterIPs
+}
