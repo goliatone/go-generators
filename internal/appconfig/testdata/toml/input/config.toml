@@ -1,0 +1,17 @@
+[database]
+dsn = "file:test.db?cache=shared"
+debug = true
+driver = "sqlite"
+server = "file"
+
+[auth]
+enabled = true
+session_ttl = "24h"
+
+  [[auth.users]]
+  username = "admin"
+  password = "pwd"
+
+[views]
+dir = "./views"
+file_extension = ".html"
