@@ -1,5 +1,36 @@
 # Changelog
 
+# [0.6.0](https://github.com/goliatone/go-generators/compare/v0.5.0...v0.6.0) - (2025-02-04)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Manage complex types ([6614933](https://github.com/goliatone/go-generators/commit/661493394a128224afd0ff0cb81c9684b47c5216))  - (goliatone)
+- Ensure we try to use arrays in test ([3a0dd2f](https://github.com/goliatone/go-generators/commit/3a0dd2f5260dbc63b261349559ca8525bd9e19db))  - (goliatone)
+- Ensure we try to use arrays in test ([9e9142f](https://github.com/goliatone/go-generators/commit/9e9142f7a63fd745915a6ac6a742387d172e2896))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.6.0 ([4770928](https://github.com/goliatone/go-generators/commit/4770928c18a12ef7f2be2516d3d8120348ef1056))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Test support for complex types ([aa91b7a](https://github.com/goliatone/go-generators/commit/aa91b7acf511182b7f1a8d215b416916626801ca))  - (goliatone)
+- Test support for complex types ([ff0f2e1](https://github.com/goliatone/go-generators/commit/ff0f2e15f8016f4a2ba2650103619a9e0a757270))  - (goliatone)
+
+## <!-- 2 -->🚜 Refactor
+
+- Functions that can be used in other places ([9c8164d](https://github.com/goliatone/go-generators/commit/9c8164d79847f0cfc0d175d9c2f7fd8b5be91b43))  - (goliatone)
+- Functions that can be used in other places ([b15ad63](https://github.com/goliatone/go-generators/commit/b15ad631c84ec9c8b135e6649eb6be670d29ee01))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.5.0 ([9ffef9c](https://github.com/goliatone/go-generators/commit/9ffef9ca0023d73a3e01499d7ed91c245b088123))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#6](https://github.com/goliatone/go-generators/pull/6): support types ([408d12f](https://github.com/goliatone/go-generators/commit/408d12feaa2f21e0430db8ab4cc5292442af9964))  - (goliatone)
+- Handle function parameters ([979c13f](https://github.com/goliatone/go-generators/commit/979c13f6ac47f3436bb096d1b1128ae5cd5e8378))  - (goliatone)
+
 # [0.5.0](https://github.com/goliatone/go-generators/compare/v0.4.0...v0.5.0) - (2025-02-03)
 
 ## <!-- 1 -->🐛 Bug Fixes
