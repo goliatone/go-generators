@@ -133,7 +133,7 @@ func (g *Generator) generateGetters(opts common.Options) error {
 		return fmt.Errorf("failed to render code: %v", err)
 	}
 
-	fmt.Printf("Successfully generated getters in %s\n", opts.OutputFile)
+	fmt.Printf("Successfully generated config getters in %s\n", opts.OutputFile)
 	return nil
 }
 
