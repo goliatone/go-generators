@@ -56,6 +56,7 @@ app-config -input ./config/app.json -output ./config/config_structs.go -package 
 - `-input`: Input JSON file that defines your configuration (default: config.json)
 - `-output`: Output file for generated Go structs (default: config_structs.go)
 - `-pkg`: Package name for the generated code (default: main)
+- `-extension`:
 
 #### Example
 
@@ -140,6 +141,11 @@ database:
   - name: assets_fs
     override: AssetsFS
     type: fs.FS
+```
+
+Add the `-extension` flag with the path to the `overrides.yml` file:
+```
+//go:generate app-config -input ./app.json -output ./config_structs.go -pkg config --struct BaseConfig -extension overrides.yml
 ```
 
 The generated file is:
