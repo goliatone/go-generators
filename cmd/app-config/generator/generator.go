@@ -25,6 +25,8 @@ func Run() {
 		appconfig.DefaultStructName,
 		fmt.Sprintf("Struct name for top level generated struct code (default: %s)", appconfig.DefaultStructName),
 	)
+	flag.StringVar(&opts.ExtensionFile, "extension", "", "Extension file with overrides")
+
 	flag.Parse()
 
 	if opts.InputFile == "" {
