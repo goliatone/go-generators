@@ -1,5 +1,38 @@
 # Changelog
 
+# [0.9.0](https://github.com/goliatone/go-generators/compare/v0.8.0...v0.9.0) - (2025-02-07)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Better success message ([1ef17ae](https://github.com/goliatone/go-generators/commit/1ef17ae5240ceb64a8fa6ec431feef3d90ff67df))  - (goliatone)
+- Better success message ([ed603dd](https://github.com/goliatone/go-generators/commit/ed603ddf1e2f625d3fc458eb90a9b92c495e6cd9))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.9.0 ([d7d7a16](https://github.com/goliatone/go-generators/commit/d7d7a16507d5230da7e06969e02c122779530d93))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Extension file option ([e759ac9](https://github.com/goliatone/go-generators/commit/e759ac94728b030e1516591e5ef947e80775f082))  - (goliatone)
+- Override generated fields based on file meta ([3be52ec](https://github.com/goliatone/go-generators/commit/3be52ecd9c5aba04780807e3686860022b816c42))  - (goliatone)
+- Flag for extension file ([92c0153](https://github.com/goliatone/go-generators/commit/92c01530b6f015a7e8248ae67298e40d91e4e712))  - (goliatone)
+- Extension file ([432fd97](https://github.com/goliatone/go-generators/commit/432fd9721e6a13a05744dae8e5660a1714261f6d))  - (goliatone)
+- Extension file ([39da61c](https://github.com/goliatone/go-generators/commit/39da61cc4687e232f298113890b49f6266ddb24c))  - (goliatone)
+- Extension file ([a975927](https://github.com/goliatone/go-generators/commit/a975927d09c73c12640f8437d39c904cf1e5ec13))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.8.0 ([a49a599](https://github.com/goliatone/go-generators/commit/a49a599a015596d40d3d9cbd612c7e9a49c3f37a))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#9](https://github.com/goliatone/go-generators/pull/9): config gen overrides ([2dd6cbc](https://github.com/goliatone/go-generators/commit/2dd6cbc88157b28e404714db9fd10db5ae313fd1))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update readme ([a695448](https://github.com/goliatone/go-generators/commit/a69544894cd1c6272ca4ea1712caff7394f5885c))  - (goliatone)
+- Update readme ([eb74e7d](https://github.com/goliatone/go-generators/commit/eb74e7d0dd118f6429e38e4373955ad0f509f0cf))  - (goliatone)
+
 # [0.8.0](https://github.com/goliatone/go-generators/compare/v0.7.0...v0.8.0) - (2025-02-07)
 
 ## <!-- 13 -->📦 Bumps
