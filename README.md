@@ -24,7 +24,6 @@ go install github.com/goliatone/go-generators/cmd/app-config@latest
 2. Add appropriate `//go:generate` comments to your code
 3. Run `go generate ./...` in your project
 
-
 ## Available Generators
 
 ### App Config
@@ -36,7 +35,8 @@ By integrating `app-config` via a `//go:generate` directive, you can automatical
 1. **Add a generate comment to your configuration file (or any Go file):**
 
 ```go
-//go:generate app-config -input ./config.json -output ./config_structs.go -package config
+//go:generate app-config -input ./app.json -output ./config_structs.go -pkg config
+package config
 ```
 
 2. Run go generate:
