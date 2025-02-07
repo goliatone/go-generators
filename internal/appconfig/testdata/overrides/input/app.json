@@ -1,0 +1,5 @@
+{
+  "database": {
+    "dsn": "file:test.db?cache=shared"
+  }
+}

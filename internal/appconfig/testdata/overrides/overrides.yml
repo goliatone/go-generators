@@ -1,0 +1,6 @@
+database:
+  - name: Dsn
+    override: DSN
+  - name: assets_fs
+    override: AssetsFS
+    type: fs.FS
