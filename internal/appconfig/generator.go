@@ -93,6 +93,7 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 
 	ext := make(ExtensionConfig)
 	if opts.ExtensionFile != "" {
+		fmt.Println("Loading extension file...")
 		ext, err = loadExtensionFile(opts.ExtensionFile)
 		if err != nil {
 			return err
@@ -225,6 +226,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 
 			for i, field := range def.Fields {
 				if field.FieldName == extField.Name {
+					fmt.Printf("override matching %s", field.FieldName)
 					if extField.Overwrite != "" {
 						def.Fields[i].FieldName = extField.Overwrite
 					}

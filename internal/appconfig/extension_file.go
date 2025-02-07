@@ -28,6 +28,9 @@ func loadExtensionFile(filepath string) (ExtensionConfig, error) {
 	if err := yaml.Unmarshal(raw, &ext); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal extension file: %v", err)
 	}
+
+	fmt.Printf("Loaded extension file: %s", filepath)
+
 	return ext, nil
 }
 
