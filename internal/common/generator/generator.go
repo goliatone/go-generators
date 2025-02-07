@@ -13,10 +13,11 @@ import (
 
 // Options defines common options for all generators
 type Options struct {
-	InputFile   string
-	OutputFile  string
-	PackageName string
-	StructName  string
+	InputFile     string
+	OutputFile    string
+	PackageName   string
+	StructName    string
+	ExtensionFile string
 }
 
 // Generator interface that all generators must implement

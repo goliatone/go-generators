@@ -151,7 +151,7 @@ config-getters -input ./config.go
 
 #### Example
 
-Example `config.go` file:
+Given the following `config.go` file:
 
 ```go
 package config
