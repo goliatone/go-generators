@@ -134,7 +134,7 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 		return fmt.Errorf("failed to render code: %v", err)
 	}
 
-	fmt.Printf("Successfully generated setters in %s\n", opts.OutputFile)
+	fmt.Printf("Successfully generated app %s in %s\n", structName, opts.OutputFile)
 	return nil
 }
 
