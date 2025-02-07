@@ -226,7 +226,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 
 			for i, field := range def.Fields {
 				if field.FieldName == extField.Name {
-					fmt.Printf("override matching %s", field.FieldName)
+					fmt.Printf("override matching %s\n", field.FieldName)
 					if extField.Overwrite != "" {
 						def.Fields[i].FieldName = extField.Overwrite
 					}
@@ -239,6 +239,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 			}
 
 			if !matched && extField.Overwrite != "" && extField.Type != "" {
+				fmt.Printf("override adding field: %s\n", extField.Name)
 				def.Fields = append(def.Fields, FieldDef{
 					FieldName: extField.Overwrite,
 					TypeName:  extField.Type,

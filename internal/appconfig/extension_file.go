@@ -29,7 +29,7 @@ func loadExtensionFile(filepath string) (ExtensionConfig, error) {
 		return nil, fmt.Errorf("failed to unmarshal extension file: %v", err)
 	}
 
-	fmt.Printf("Loaded extension file: %s", filepath)
+	fmt.Printf("Loaded extension file: %s\n", filepath)
 
 	return ext, nil
 }
