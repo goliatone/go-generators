@@ -16,7 +16,7 @@ type Options struct {
 	InputFile   string
 	OutputFile  string
 	PackageName string
-	// Add more common options as needed
+	StructName  string
 }
 
 // Generator interface that all generators must implement

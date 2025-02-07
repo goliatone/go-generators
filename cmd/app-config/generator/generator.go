@@ -2,6 +2,7 @@ package generator
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"path/filepath"
 
@@ -14,7 +15,16 @@ func Run() {
 
 	flag.StringVar(&opts.InputFile, "input", "config.go", "Input file containing the config structs")
 	flag.StringVar(&opts.OutputFile, "output", "config_structs.go", "Output file for generated code (default: config_structs.go)")
-	flag.StringVar(&opts.PackageName, "pkg", "config", "Package name for generated code (default: config)")
+	flag.StringVar(&opts.PackageName,
+		"pkg",
+		appconfig.DefaultPackageName,
+		fmt.Sprintf("Package name for generated code (default: %s)", appconfig.DefaultPackageName),
+	)
+	flag.StringVar(&opts.StructName,
+		"struct",
+		appconfig.DefaultStructName,
+		fmt.Sprintf("Struct name for top level generated struct code (default: %s)", appconfig.DefaultStructName),
+	)
 	flag.Parse()
 
 	if opts.InputFile == "" {
@@ -23,6 +33,10 @@ func Run() {
 
 	if opts.OutputFile == "" {
 		opts.OutputFile = "config_structs.go"
+	}
+
+	if opts.StructName == "" {
+		opts.StructName = appconfig.DefaultStructName
 	}
 
 	// Convert to absolute paths

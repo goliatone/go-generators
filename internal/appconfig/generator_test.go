@@ -16,17 +16,18 @@ var update = flag.Bool("update", false, "update golden files")
 
 func TestGenerator(t *testing.T) {
 	tests := []struct {
-		name      string
-		pkgName   string
-		inputFile string
+		name       string
+		pkgName    string
+		inputFile  string
+		structName string
 	}{
 		// The test directories (under testdata) must be set up with
 		// an input JSON file (e.g. input/config.json) and the expected
 		// generated file in golden (e.g. golden/app_config.go).
-		{name: "basic", pkgName: "appconfig", inputFile: "config.json"},
-		{name: "complex", pkgName: "appconfig_complex", inputFile: "config.json"},
-		{name: "yaml", pkgName: "main", inputFile: "config.yml"},
-		{name: "toml", pkgName: "main", inputFile: "config.toml"},
+		{name: "basic", structName: "Config", pkgName: "appconfig", inputFile: "config.json"},
+		{name: "complex", structName: "Config", pkgName: "appconfig_complex", inputFile: "config.json"},
+		{name: "yaml", structName: "YAMLConfig", pkgName: "main", inputFile: "config.yml"},
+		{name: "toml", structName: "TOMLConfig", pkgName: "main", inputFile: "config.toml"},
 	}
 
 	for _, tt := range tests {
@@ -52,6 +53,7 @@ func TestGenerator(t *testing.T) {
 			err := gen.Generate(common.Options{
 				InputFile:   inputFile,
 				PackageName: tt.pkgName,
+				StructName:  tt.structName,
 			})
 			if err != nil {
 				t.Fatalf("Generate failed: %v", err)

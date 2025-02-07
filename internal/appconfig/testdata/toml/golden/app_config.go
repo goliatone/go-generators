@@ -2,7 +2,7 @@
 
 package main
 
-type Config struct {
+type TOMLConfig struct {
 	Auth     Auth     `koanf:"auth"`
 	Database Database `koanf:"database"`
 	Views    Views    `koanf:"views"`
