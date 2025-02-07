@@ -1,5 +1,32 @@
 # Changelog
 
+# [0.8.0](https://github.com/goliatone/go-generators/compare/v0.7.0...v0.8.0) - (2025-02-07)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.8.0 ([ea930c3](https://github.com/goliatone/go-generators/commit/ea930c34b305b8e78e57264c0dd0534d60b24b71))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Test optional struct name ([c607a12](https://github.com/goliatone/go-generators/commit/c607a12dfd0ede453b70236ef513f61cafced17d))  - (goliatone)
+- Test optional struct name ([2f7b6f0](https://github.com/goliatone/go-generators/commit/2f7b6f0a364ba1c9eef5859d05d5048fb0de01f8))  - (goliatone)
+- Take flag for struct name ([c24e5dd](https://github.com/goliatone/go-generators/commit/c24e5ddcb3935c47c75b1c2c51bfc215532293dc))  - (goliatone)
+- Test optional struct name ([fdf80e7](https://github.com/goliatone/go-generators/commit/fdf80e7dd668ba75eb751fbb05d5e3b89db9040b))  - (goliatone)
+- Take flag for struct name ([ef11499](https://github.com/goliatone/go-generators/commit/ef11499eb95c7aa4c21dec0d5bc05484d8647a92))  - (goliatone)
+- Take flag for struct name ([a20520a](https://github.com/goliatone/go-generators/commit/a20520a7099da8d182e635b6ba34d5c406718477))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.7.0 ([4f4c1a3](https://github.com/goliatone/go-generators/commit/4f4c1a3287985521865ff3ca055e9cee7b48ab97))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#8](https://github.com/goliatone/go-generators/pull/8): optional struct name ([01f55cf](https://github.com/goliatone/go-generators/commit/01f55cff90e77fab2c8fba7dbc9c70a9afe5f721))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update docs ([7b1a6d8](https://github.com/goliatone/go-generators/commit/7b1a6d8dfcba6db1575f5c55ec8f23fd04f659c7))  - (goliatone)
+
 # [0.7.0](https://github.com/goliatone/go-generators/compare/v0.6.0...v0.7.0) - (2025-02-04)
 
 ## <!-- 1 -->🐛 Bug Fixes
