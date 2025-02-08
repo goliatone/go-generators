@@ -3,42 +3,17 @@
 package config
 
 type BaseConfig struct {
-	Auth        Auth        `koanf:"auth"`
 	Persistence Persistence `koanf:"persistence"`
 	Views       Views       `koanf:"views"`
 }
 
-type Auth struct {
-	Audience              []string `koanf:"audience"`
-	AuthScheme            string   `koanf:"auth_scheme"`
-	ContextKey            string   `koanf:"context_key"`
-	ExtendedTokenDuration float64  `koanf:"extended_token_duration"`
-	Issuer                string   `koanf:"issuer"`
-	RejectedRouteDefault  string   `koanf:"rejected_route_default"`
-	RejectedRouteKey      string   `koanf:"rejected_route_key"`
-	SigningKey            string   `koanf:"signing_key"`
-	SigningMethod         string   `koanf:"signing_method"`
-	TokenExpiration       float64  `koanf:"token_expiration"`
-	TokenLookup           string   `koanf:"token_lookup"`
-}
-
 type Persistence struct {
-	Debug                 bool   `koanf:"debug"`
-	Driver                string `koanf:"driver"`
 	DSN                   string `koanf:"dsn"`
-	OtelIdentifier        string `koanf:"otel_identifier"`
-	PingTimeoutExpression string `koanf:"ping_timeout_expression"`
-	Server                string `koanf:"server"`
 }
 
 type Views struct {
 	CSSPath          string `koanf:"css_path"`
-	Debug            bool   `koanf:"debug"`
 	DirFS            string `koanf:"dir_fs"`
 	DirOS            string `koanf:"dir_os"`
-	Embed            bool   `koanf:"embed"`
-	Ext              string `koanf:"ext"`
 	JSPath           string `koanf:"js_path"`
-	Reload           bool   `koanf:"reload"`
-	RemovePathPrefix string `koanf:"remove_path_prefix"`
 }
