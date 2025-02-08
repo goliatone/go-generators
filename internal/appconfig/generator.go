@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"sort"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 	"github.com/dave/jennifer/jen"
@@ -160,6 +161,7 @@ type FieldDef struct {
 	FieldName string // Go field name (exported)
 	TypeName  string // Field type (e.g. string, bool, Database, []User, etc.)
 	JSONKey   string // Original JSON key for the koanf tag.
+	Setter    bool   // If true we add setter
 }
 
 // processObject recursively processes a JSON object into a StructDef.
@@ -230,9 +232,13 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 					if extField.Overwrite != "" {
 						def.Fields[i].FieldName = extField.Overwrite
 					}
+
 					if extField.Type != "" {
 						def.Fields[i].TypeName = extField.Type
 					}
+
+					def.Fields[i].Setter = extField.Setter
+
 					matched = true
 					break
 				}
@@ -244,6 +250,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 					FieldName: extField.Overwrite,
 					TypeName:  extField.Type,
 					JSONKey:   extField.Name,
+					Setter:    extField.Setter,
 				})
 			}
 		}
@@ -279,6 +286,24 @@ func generateStruct(f *jen.File, def *StructDef) {
 
 	f.Type().Id(def.Name).Struct(fields...)
 	f.Line()
+
+	receiver := strings.ToLower(def.Name[:1])
+	for _, field := range def.Fields {
+		if field.Setter {
+			// generate setter with signature:
+			// func (r *StructName) Set<FieldName>(val <FieldType>) {
+			//     r.<FieldName> = val
+			// }
+			f.Func().
+				Params(jen.Id(receiver).Op("*").Id(def.Name)).
+				Id("Set" + field.FieldName).
+				Params(jen.Id("val").Id(field.TypeName)).
+				Block(
+					jen.Id(receiver).Dot(field.FieldName).Op("=").Id("val"),
+				)
+			f.Line()
+		}
+	}
 }
 
 func toCamel(s string) string {
