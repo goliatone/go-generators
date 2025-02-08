@@ -10,3 +10,7 @@ type Database struct {
 	AssetsFS fs.FS  `koanf:"assets_fs"`
 	DSN      string `koanf:"dsn"`
 }
+
+func (d *Database) SetAssetsFS(val fs.FS) {
+	d.AssetsFS = val
+}
