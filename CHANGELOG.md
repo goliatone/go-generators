@@ -1,5 +1,24 @@
 # Changelog
 
+# [0.10.3](https://github.com/goliatone/go-generators/compare/v0.10.2...v0.10.3) - (2025-02-09)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Use goimports for package ([8a34b28](https://github.com/goliatone/go-generators/commit/8a34b28240b895f94fc6b44a05b929872cbff205))  - (goliatone)
+- Use goimports for package ([4541787](https://github.com/goliatone/go-generators/commit/45417879a9df90bb8ed688f8163a1efd6ac8aaa7))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.10.3 ([44d881a](https://github.com/goliatone/go-generators/commit/44d881affabf134101b33efca5469cb729603e71))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.10.2 ([096c14e](https://github.com/goliatone/go-generators/commit/096c14eae2ebb22b2a73033bb1e3996ae192751d))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#13](https://github.com/goliatone/go-generators/pull/13): generator import ([2bb643b](https://github.com/goliatone/go-generators/commit/2bb643b2d590d9e439d595f51b51fe853b0c1200))  - (goliatone)
+
 # [0.10.2](https://github.com/goliatone/go-generators/compare/v0.10.1...v0.10.2) - (2025-02-09)
 
 ## <!-- 1 -->🐛 Bug Fixes
