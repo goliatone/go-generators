@@ -1,5 +1,40 @@
 # Changelog
 
+# [0.10.0](https://github.com/goliatone/go-generators/compare/v0.9.2...v0.10.0) - (2025-02-09)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Match json name to field ([381ced9](https://github.com/goliatone/go-generators/commit/381ced90e9324b49ec017a2950640373872c279a))  - (goliatone)
+- Match json name to field ([9691fe8](https://github.com/goliatone/go-generators/commit/9691fe89cdb1b1d8cd323114459fc6022f32fa0a))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.10.0 ([9478b61](https://github.com/goliatone/go-generators/commit/9478b6135b15676a65bdd57fb4ebc80918d97638))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Create setter ([fb65e44](https://github.com/goliatone/go-generators/commit/fb65e4410f5eef5083fb4d20014a24b8e5da60e0))  - (goliatone)
+- Create setter ([869b7d9](https://github.com/goliatone/go-generators/commit/869b7d9c97f2c4a9eb704d57670804a8e3bd236a))  - (goliatone)
+- Create setter ([a404f45](https://github.com/goliatone/go-generators/commit/a404f45a72e9db585f727cf851f82e5507747c6b))  - (goliatone)
+- Setter for generator ([5849b8b](https://github.com/goliatone/go-generators/commit/5849b8b4ffac1de5af3849ecd6ad4c05e4658602))  - (goliatone)
+- Setter for generator ([8d35977](https://github.com/goliatone/go-generators/commit/8d35977f1dccfc29736c6f783eaf5ace257d5f0c))  - (goliatone)
+
+## <!-- 22 -->🚧 WIP
+
+- Fix overrides ([db7b104](https://github.com/goliatone/go-generators/commit/db7b104a79466b00e0734f69755a7b9280fd93a7))  - (goliatone)
+- Fix overrides ([d8c3b3c](https://github.com/goliatone/go-generators/commit/d8c3b3c5aa0d3eabbaebc1e83202cc07f29cee72))  - (goliatone)
+- Fix overrides ([c85615f](https://github.com/goliatone/go-generators/commit/c85615ffda4fa765810610871679b9b80ec8fb9e))  - (goliatone)
+- Test for complex ([fec8a53](https://github.com/goliatone/go-generators/commit/fec8a53c354798fdf6cd55228e86a3f2b9ab38b1))  - (goliatone)
+- Fix output ([78952fa](https://github.com/goliatone/go-generators/commit/78952fa18fbe5106b8de925998b6a79a8875655b))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.9.2 ([7981cc8](https://github.com/goliatone/go-generators/commit/7981cc89bdc0c7426b492aef7fabfdd241336f92))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#10](https://github.com/goliatone/go-generators/pull/10): overrides ([6fda944](https://github.com/goliatone/go-generators/commit/6fda94456b827a1442f51dfd76c515dea423667c))  - (goliatone)
+
 # [0.9.2](https://github.com/goliatone/go-generators/compare/v0.9.1...v0.9.2) - (2025-02-07)
 
 ## <!-- 13 -->📦 Bumps
