@@ -13,11 +13,11 @@ require (
 )
 
 require (
-	github.com/goliatone/go-print v0.0.1
+	golang.org/x/tools v0.29.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
-	github.com/goliatone/go-masker v0.0.1 // indirect
-	github.com/showa-93/go-mask v0.6.2 // indirect
+	golang.org/x/mod v0.22.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
 )
