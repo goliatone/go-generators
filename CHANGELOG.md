@@ -1,5 +1,28 @@
 # Changelog
 
+# [0.10.2](https://github.com/goliatone/go-generators/compare/v0.10.1...v0.10.2) - (2025-02-09)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Use goimports to fix source ([dc3a2fd](https://github.com/goliatone/go-generators/commit/dc3a2fdcf6f9f532b70356ed76b19c7490d433f5))  - (goliatone)
+- Use goimports to fix source ([b847696](https://github.com/goliatone/go-generators/commit/b847696713aac80077f4889bf2c46c5421ee8586))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.10.2 ([0841e69](https://github.com/goliatone/go-generators/commit/0841e6925196bf6ddb05005a41581926bab9fef6))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.10.1 ([0388784](https://github.com/goliatone/go-generators/commit/0388784db38c2ca7a948792a7c7636dd93b92246))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#12](https://github.com/goliatone/go-generators/pull/12): setter gen ([5d46b09](https://github.com/goliatone/go-generators/commit/5d46b09c96c0c4bf6a21fd817f722a7544d9fbd1))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Add deps ([46b0f34](https://github.com/goliatone/go-generators/commit/46b0f34b7a99c4d61c032f538261dae50e0a85ca))  - (goliatone)
+
 # [0.10.1](https://github.com/goliatone/go-generators/compare/v0.10.0...v0.10.1) - (2025-02-09)
 
 ## <!-- 1 -->🐛 Bug Fixes
