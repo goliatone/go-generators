@@ -227,7 +227,8 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 			matched := false
 
 			for i, field := range def.Fields {
-				if field.FieldName == extField.Name {
+				fmt.Printf("compare %s == %s\n", field.FieldName, extField.Name)
+				if strings.EqualFold(field.FieldName, extField.Name) {
 					fmt.Printf("override matching %s\n", field.FieldName)
 					if extField.Overwrite != "" {
 						def.Fields[i].FieldName = extField.Overwrite
