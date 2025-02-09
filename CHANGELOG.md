@@ -1,5 +1,25 @@
 # Changelog
 
+# [0.10.1](https://github.com/goliatone/go-generators/compare/v0.10.0...v0.10.1) - (2025-02-09)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Include import statement ([658ffe2](https://github.com/goliatone/go-generators/commit/658ffe21542f490548d1e7233be752186a7780eb))  - (goliatone)
+- Include import statement ([a4e692a](https://github.com/goliatone/go-generators/commit/a4e692a27b222f934d3ddbedaa2700527779e382))  - (goliatone)
+- Include import statement ([9e3bc67](https://github.com/goliatone/go-generators/commit/9e3bc67ed103bb143e94129a15a3307b2378ef07))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.10.1 ([5eabed2](https://github.com/goliatone/go-generators/commit/5eabed25f5c91d86aa076b67dc08a30c0bb1fef2))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.10.0 ([19a40c7](https://github.com/goliatone/go-generators/commit/19a40c7008daf39a7e707d78a326289e0d35d2fd))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#11](https://github.com/goliatone/go-generators/pull/11): setter ([ad4f3fd](https://github.com/goliatone/go-generators/commit/ad4f3fd93f0125be6bbd16b90605289884b8f43a))  - (goliatone)
+
 # [0.10.0](https://github.com/goliatone/go-generators/compare/v0.9.2...v0.10.0) - (2025-02-09)
 
 ## <!-- 1 -->🐛 Bug Fixes
