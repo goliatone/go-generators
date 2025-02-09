@@ -299,7 +299,8 @@ func generateStruct(f *jen.File, def *StructDef) {
 		fields = append(fields,
 			jen.Id(field.FieldName).
 				Id(field.TypeName).
-				Tag(map[string]string{"koanf": field.JSONKey}),
+				Tag(map[string]string{"koanf": field.JSONKey}).
+				Tag(map[string]string{"json": field.JSONKey}),
 		)
 	}
 
