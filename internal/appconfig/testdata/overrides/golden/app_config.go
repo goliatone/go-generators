@@ -5,12 +5,12 @@ package appconfig
 import "io/fs"
 
 type Config struct {
-	Database Database `koanf:"database"`
+	Database Database `json:"database" koanf:"database"`
 }
 
 type Database struct {
-	AssetsFS fs.FS  `koanf:"assets_fs"`
-	DSN      string `koanf:"dsn"`
+	AssetsFS fs.FS  `json:"assets_fs" koanf:"assets_fs"`
+	DSN      string `json:"dsn" koanf:"dsn"`
 }
 
 func (d *Database) SetAssetsFS(val fs.FS) {

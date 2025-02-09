@@ -3,13 +3,13 @@
 package appconfig
 
 type Config struct {
-	Database Database `koanf:"database"`
+	Database Database `json:"database" koanf:"database"`
 }
 
 type Database struct {
-	Debug      bool   `koanf:"debug"`
-	DefaultTTL string `koanf:"default_ttl"`
-	Driver     string `koanf:"driver"`
-	Dsn        string `koanf:"dsn"`
-	Server     string `koanf:"server"`
+	Debug      bool   `json:"debug" koanf:"debug"`
+	DefaultTTL string `json:"default_ttl" koanf:"default_ttl"`
+	Driver     string `json:"driver" koanf:"driver"`
+	Dsn        string `json:"dsn" koanf:"dsn"`
+	Server     string `json:"server" koanf:"server"`
 }

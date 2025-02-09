@@ -3,17 +3,17 @@
 package config
 
 type BaseConfig struct {
-	Persistence Persistence `koanf:"persistence"`
-	Views       Views       `koanf:"views"`
+	Persistence Persistence `json:"persistence" koanf:"persistence"`
+	Views       Views       `json:"views" koanf:"views"`
 }
 
 type Persistence struct {
-	DSN string `koanf:"dsn"`
+	DSN string `json:"dsn" koanf:"dsn"`
 }
 
 type Views struct {
-	CSSPath string `koanf:"css_path"`
-	DirFS   string `koanf:"dir_fs"`
-	DirOS   string `koanf:"dir_os"`
-	JSPath  string `koanf:"js_path"`
+	CSSPath string `json:"css_path" koanf:"css_path"`
+	DirFS   string `json:"dir_fs" koanf:"dir_fs"`
+	DirOS   string `json:"dir_os" koanf:"dir_os"`
+	JSPath  string `json:"js_path" koanf:"js_path"`
 }

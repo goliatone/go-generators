@@ -3,30 +3,30 @@
 package main
 
 type YAMLConfig struct {
-	Auth     Auth     `koanf:"auth"`
-	Database Database `koanf:"database"`
-	Views    Views    `koanf:"views"`
+	Auth     Auth     `json:"auth" koanf:"auth"`
+	Database Database `json:"database" koanf:"database"`
+	Views    Views    `json:"views" koanf:"views"`
 }
 
 type Auth struct {
-	Enabled    bool   `koanf:"enabled"`
-	SessionTTL string `koanf:"session_ttl"`
-	Users      []User `koanf:"users"`
+	Enabled    bool   `json:"enabled" koanf:"enabled"`
+	SessionTTL string `json:"session_ttl" koanf:"session_ttl"`
+	Users      []User `json:"users" koanf:"users"`
 }
 
 type Database struct {
-	Debug  bool   `koanf:"debug"`
-	Driver string `koanf:"driver"`
-	Dsn    string `koanf:"dsn"`
-	Server string `koanf:"server"`
+	Debug  bool   `json:"debug" koanf:"debug"`
+	Driver string `json:"driver" koanf:"driver"`
+	Dsn    string `json:"dsn" koanf:"dsn"`
+	Server string `json:"server" koanf:"server"`
 }
 
 type User struct {
-	Password string `koanf:"password"`
-	Username string `koanf:"username"`
+	Password string `json:"password" koanf:"password"`
+	Username string `json:"username" koanf:"username"`
 }
 
 type Views struct {
-	Dir           string `koanf:"dir"`
-	FileExtension string `koanf:"file_extension"`
+	Dir           string `json:"dir" koanf:"dir"`
+	FileExtension string `json:"file_extension" koanf:"file_extension"`
 }
