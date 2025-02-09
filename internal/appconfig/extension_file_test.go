@@ -17,13 +17,17 @@ func TestExtensions(t *testing.T) {
 		structName string
 		extFile    string
 	}{
-		// The test directories (under testdata) must be set up with
-		// an input JSON file (e.g. input/config.json) and the expected
-		// generated file in golden (e.g. golden/app_config.go).
 		{
 			name:       "overrides",
 			structName: "Config",
 			pkgName:    "appconfig",
+			inputFile:  "app.json",
+			extFile:    "overrides.yml",
+		},
+		{
+			name:       "overrides_complex",
+			structName: "BaseConfig",
+			pkgName:    "config",
 			inputFile:  "app.json",
 			extFile:    "overrides.yml",
 		},

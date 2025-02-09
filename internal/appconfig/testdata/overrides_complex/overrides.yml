@@ -1,0 +1,10 @@
+views:
+  - name: dir_os
+    override: DirOS
+  - name: dir_fs
+    override: DirFS
+  - name: js_path
+    override: JSPath
+persistence:
+  - name: dsn
+    override: DSN

@@ -1,0 +1,11 @@
+{
+  "persistence": {
+    "dsn": "file:test.db?cache=shared"
+  },
+  "views": {
+    "css_path": "./public/css/",
+    "js_path": "./public/js/",
+    "dir_os": "./views",
+    "dir_fs": "./views"
+  }
+}

@@ -4,3 +4,4 @@ database:
   - name: assets_fs
     override: AssetsFS
     type: fs.FS
+    setter: true
