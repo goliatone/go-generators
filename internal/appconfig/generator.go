@@ -281,7 +281,9 @@ func generateStruct(f *jen.File, def *StructDef) {
 	fields := []jen.Code{}
 	for _, field := range def.Fields {
 		fields = append(fields,
-			jen.Id(field.FieldName).Id(field.TypeName).Tag(map[string]string{"koanf": field.JSONKey}),
+			jen.Id(field.FieldName).
+				Add(common.ParseType(field.TypeName)).
+				Tag(map[string]string{"koanf": field.JSONKey}),
 		)
 	}
 

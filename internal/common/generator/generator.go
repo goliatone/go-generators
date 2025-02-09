@@ -127,3 +127,28 @@ func ExtractTypeInfo(expr ast.Expr) (paramType, importPath, typePkg string) {
 
 	return "", "", ""
 }
+
+func ParseType(typ string) *jen.Statement {
+	if typ == "" {
+		return jen.Id("")
+	}
+	// slices
+	if strings.HasPrefix(typ, "[]") {
+		base := typ[2:]
+		return jen.Index().Add(ParseType(base))
+	}
+	// pointers
+	if strings.HasPrefix(typ, "*") {
+		base := typ[1:]
+		return jen.Op("*").Add(ParseType(base))
+	}
+	// package qualified types like "time.Duration"
+	if strings.Contains(typ, ".") {
+		parts := strings.SplitN(typ, ".", 2)
+		pkg, tname := parts[0], parts[1]
+		return jen.Qual(pkg, tname)
+	}
+
+	// assume it is a builtin / already imported type
+	return jen.Id(typ)
+}
