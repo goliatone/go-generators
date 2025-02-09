@@ -1,9 +1,9 @@
 views:
-  - name: dir_os
+  - name: DirOs
     override: DirOS
-  - name: dir_fs
+  - name: DirFs
     override: DirFS
-  - name: js_path
+  - name: JsPath
     override: JSPath
 persistence:
   - name: dsn
