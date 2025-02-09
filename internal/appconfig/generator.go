@@ -1,6 +1,7 @@
 package appconfig
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -14,6 +15,7 @@ import (
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
+	"golang.org/x/tools/imports"
 	"gopkg.in/yaml.v3"
 )
 
@@ -134,19 +136,33 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 		generateStruct(f, types[tName])
 	}
 
+	var buf bytes.Buffer
+	if err := f.Render(&buf); err != nil {
+		return fmt.Errorf("failed to render code: %v", err)
+	}
+
+	// process the generated code using goimports
+	// to format the code and adjust the imports
+	processed, err := imports.Process(opts.OutputFile, buf.Bytes(), nil)
+	if err != nil {
+		return fmt.Errorf("failed to process imports on generated code: %v", err)
+	}
+
+	// If we provided a writer, we output there.
+	// e.g. in tests to generate golden files
 	if g.ToWritter {
-		return f.Render(g.Writer)
+		return common.Render(processed, g.Writer)
 	}
 
 	if err := common.CreateOutputDir(opts.OutputFile); err != nil {
 		return fmt.Errorf("failed to create output directory: %v", err)
 	}
 
-	if err := common.CreateOutputFile(opts.OutputFile, f); err != nil {
-		return fmt.Errorf("failed to render code: %v", err)
+	if err := os.WriteFile(opts.OutputFile, processed, 0644); err != nil {
+		return fmt.Errorf("failed to write processed code to file: %v", err)
 	}
 
-	fmt.Printf("Successfully generated app %s in %s\n", structName, opts.OutputFile)
+	fmt.Printf("Successfully generated app %s in %s\n", opts.StructName, opts.OutputFile)
 	return nil
 }
 
@@ -282,7 +298,7 @@ func generateStruct(f *jen.File, def *StructDef) {
 	for _, field := range def.Fields {
 		fields = append(fields,
 			jen.Id(field.FieldName).
-				Add(common.ParseType(field.TypeName)).
+				Id(field.TypeName).
 				Tag(map[string]string{"koanf": field.JSONKey}),
 		)
 	}
