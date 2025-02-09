@@ -152,3 +152,14 @@ func ParseType(typ string) *jen.Statement {
 	// assume it is a builtin / already imported type
 	return jen.Id(typ)
 }
+
+func Render(b []byte, w io.Writer) error {
+	for len(b) > 0 {
+		n, err := w.Write(b)
+		if err != nil {
+			return err
+		}
+		b = b[n:] // advance the slice by n bytes
+	}
+	return nil
+}
