@@ -220,15 +220,15 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		return def.Fields[i].FieldName < def.Fields[j].FieldName
 	})
 
-	// Apply extension configuration, if available.
+	// apply extension configuration, if available.
 	normalized := normalizeKey(typeName)
 	if extFields, ok := ext[normalized]; ok {
 		for _, extField := range extFields {
 			matched := false
 
 			for i, field := range def.Fields {
-				fmt.Printf("compare %s == %s\n", field.FieldName, extField.Name)
-				if strings.EqualFold(field.FieldName, extField.Name) {
+				fname := normalizeKey(field.FieldName)
+				if strings.EqualFold(fname, extField.Name) {
 					fmt.Printf("override matching %s\n", field.FieldName)
 					if extField.Overwrite != "" {
 						def.Fields[i].FieldName = extField.Overwrite
