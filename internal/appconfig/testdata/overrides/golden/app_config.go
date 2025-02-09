@@ -2,7 +2,7 @@
 
 package appconfig
 
-import fs "fs"
+import "io/fs"
 
 type Config struct {
 	Database Database `koanf:"database"`
