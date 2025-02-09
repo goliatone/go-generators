@@ -8,12 +8,12 @@ type BaseConfig struct {
 }
 
 type Persistence struct {
-	DSN                   string `koanf:"dsn"`
+	DSN string `koanf:"dsn"`
 }
 
 type Views struct {
-	CSSPath          string `koanf:"css_path"`
-	DirFS            string `koanf:"dir_fs"`
-	DirOS            string `koanf:"dir_os"`
-	JSPath           string `koanf:"js_path"`
+	CSSPath string `koanf:"css_path"`
+	DirFS   string `koanf:"dir_fs"`
+	DirOS   string `koanf:"dir_os"`
+	JSPath  string `koanf:"js_path"`
 }
