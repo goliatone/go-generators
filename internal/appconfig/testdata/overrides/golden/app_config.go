@@ -2,6 +2,8 @@
 
 package appconfig
 
+import fs "fs"
+
 type Config struct {
 	Database Database `koanf:"database"`
 }
