@@ -8,3 +8,7 @@ views:
 persistence:
   - name: dsn
     override: DSN
+server:
+  - name: "metadata"
+    type: map[string]any
+    setter: true
