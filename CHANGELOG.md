@@ -1,5 +1,30 @@
 # Changelog
 
+# [0.12.0](https://github.com/goliatone/go-generators/compare/v0.11.1...v0.12.0) - (2025-02-11)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Prune orphaned types ([6409751](https://github.com/goliatone/go-generators/commit/640975126b16a2158ec8e4b2367d9fb8d2401eb8))  - (goliatone)
+- Update testst with new output ([dd34c1d](https://github.com/goliatone/go-generators/commit/dd34c1d06e87eed7680333828ad38cbd9240f00e))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.12.0 ([64014af](https://github.com/goliatone/go-generators/commit/64014afb7ce259576793739965d97b8fd14d7a39))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Test to handle meta ([7fb68ac](https://github.com/goliatone/go-generators/commit/7fb68acdcadc1a063a85692674dda00563007999))  - (goliatone)
+- Test to handle meta ([fe4321c](https://github.com/goliatone/go-generators/commit/fe4321c00fc4866f6934313f81c84bbbfced449d))  - (goliatone)
+- Update golden file for generator ([b0aa69b](https://github.com/goliatone/go-generators/commit/b0aa69b5e2940b9338afc45f0331cebe82050df0))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.11.1 ([e159b83](https://github.com/goliatone/go-generators/commit/e159b830789b9474997b0412449bf6e400117f4e))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#15](https://github.com/goliatone/go-generators/pull/15): config gen ([a03c1f9](https://github.com/goliatone/go-generators/commit/a03c1f97e967b943f7555a748a6d732ebd9d7919))  - (goliatone)
+
 # [0.11.1](https://github.com/goliatone/go-generators/compare/v0.11.0...v0.11.1) - (2025-02-09)
 
 ## <!-- 1 -->🐛 Bug Fixes
