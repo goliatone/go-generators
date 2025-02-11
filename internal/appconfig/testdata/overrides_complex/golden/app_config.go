@@ -4,11 +4,20 @@ package config
 
 type BaseConfig struct {
 	Persistence Persistence `json:"persistence" koanf:"persistence"`
+	Server      Server      `json:"server" koanf:"server"`
 	Views       Views       `json:"views" koanf:"views"`
 }
 
 type Persistence struct {
 	DSN string `json:"dsn" koanf:"dsn"`
+}
+
+type Server struct {
+	Metadata map[string]any `json:"metadata" koanf:"metadata"`
+}
+
+func (s *Server) SetMetadata(val map[string]any) {
+	s.Metadata = val
 }
 
 type Views struct {

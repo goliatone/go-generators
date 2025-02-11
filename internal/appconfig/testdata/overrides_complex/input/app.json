@@ -7,5 +7,10 @@
     "js_path": "./public/js/",
     "dir_os": "./views",
     "dir_fs": "./views"
+  },
+  "server": {
+    "metadata": {
+        "contact": {}
+    }
   }
 }
