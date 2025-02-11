@@ -1,5 +1,26 @@
 # Changelog
 
+# [0.13.0](https://github.com/goliatone/go-generators/compare/v0.12.0...v0.13.0) - (2025-02-11)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.13.0 ([e86b82a](https://github.com/goliatone/go-generators/commit/e86b82adf0b3b7ae04abeef4747cb9132bb6502e))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Test tags ([e5f4aae](https://github.com/goliatone/go-generators/commit/e5f4aae808cf96c596c760f43a25b572582aaefc))  - (goliatone)
+- Test tags ([155276e](https://github.com/goliatone/go-generators/commit/155276e024e74d47740fc2d1c652875a353fe317))  - (goliatone)
+- Support tags ([f8701ef](https://github.com/goliatone/go-generators/commit/f8701efaa7b47bde037ad93d6011ddd4334a9d85))  - (goliatone)
+- Support tags ([d4508e0](https://github.com/goliatone/go-generators/commit/d4508e030ad70e7af7600bdb11006ee44c73d828))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.12.0 ([5ac2c33](https://github.com/goliatone/go-generators/commit/5ac2c335856ca2fb7862ebf9ff56b23df5eb94e3))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#16](https://github.com/goliatone/go-generators/pull/16): tag override ([960040c](https://github.com/goliatone/go-generators/commit/960040c75634c0f4442597aa7e46a38b1d426e90))  - (goliatone)
+
 # [0.12.0](https://github.com/goliatone/go-generators/compare/v0.11.1...v0.12.0) - (2025-02-11)
 
 ## <!-- 1 -->🐛 Bug Fixes
