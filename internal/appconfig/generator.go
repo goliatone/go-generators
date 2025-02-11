@@ -181,6 +181,7 @@ type FieldDef struct {
 	TypeName  string // Field type (e.g. string, bool, Database, []User, etc.)
 	JSONKey   string // Original JSON key for the koanf tag.
 	Setter    bool   // If true we add setter
+	Tags      map[string]string
 }
 
 // processObject recursively processes a JSON object into a StructDef.
@@ -271,6 +272,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 					TypeName:  extField.Type,
 					JSONKey:   extField.Name,
 					Setter:    extField.Setter,
+					Tags:      extField.Tags,
 				})
 			}
 		}
@@ -299,13 +301,22 @@ func inferBasicType(val any) string {
 func generateStruct(f *jen.File, def *StructDef) {
 	fields := []jen.Code{}
 	for _, field := range def.Fields {
+		tags := map[string]string{
+			"koanf": field.JSONKey,
+			"json":  field.JSONKey,
+		}
+
+		for k, v := range field.Tags {
+			tags[k] = v
+			if v == "" {
+				delete(tags, k)
+			}
+		}
+
 		fields = append(fields,
 			jen.Id(field.FieldName).
 				Id(field.TypeName).
-				Tag(map[string]string{
-					"koanf": field.JSONKey,
-					"json":  field.JSONKey,
-				}),
+				Tag(tags),
 		)
 	}
 

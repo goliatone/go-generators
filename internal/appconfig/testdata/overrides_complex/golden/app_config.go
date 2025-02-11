@@ -13,7 +13,12 @@ type Persistence struct {
 }
 
 type Server struct {
-	Metadata map[string]any `json:"metadata" koanf:"metadata"`
+	ErrorHandler func(err)      `json:"-" koanf:"-"`
+	Metadata     map[string]any `json:"metadata" koanf:"metadata"`
+}
+
+func (s *Server) SetErrorHandler(val func(err)) {
+	s.ErrorHandler = val
 }
 
 func (s *Server) SetMetadata(val map[string]any) {

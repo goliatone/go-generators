@@ -12,3 +12,10 @@ server:
   - name: "metadata"
     type: map[string]any
     setter: true
+  - name: err_handler
+    override: ErrorHandler
+    type: func(err)
+    setter: true
+    tags:
+      json: "-"
+      koanf: "-"
