@@ -244,7 +244,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		return def.Fields[i].FieldName < def.Fields[j].FieldName
 	})
 
-	// apply extension configuration, if available.
+	// apply extension configuration, if available
 	normalized := normalizeKey(typeName)
 	if extFields, ok := ext[normalized]; ok {
 		applyExtensionFields(def, extFields)
@@ -282,6 +282,7 @@ func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
 				if extField.Tags != nil {
 					def.Fields[i].Tags = extField.Tags
 				}
+
 				matched = true
 				break
 			}
