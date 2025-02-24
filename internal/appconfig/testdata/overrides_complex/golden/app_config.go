@@ -4,12 +4,21 @@ package config
 
 type BaseConfig struct {
 	Persistence Persistence `json:"persistence" koanf:"persistence"`
+	Rag         Rag         `json:"rag" koanf:"rag"`
 	Server      Server      `json:"server" koanf:"server"`
 	Views       Views       `json:"views" koanf:"views"`
 }
 
+type Image struct {
+	MaxTokens int `json:"max_tokens" koanf:"max_tokens"`
+}
+
 type Persistence struct {
 	DSN string `json:"dsn" koanf:"dsn"`
+}
+
+type Rag struct {
+	Image Image `json:"image" koanf:"image"`
 }
 
 type Server struct {
