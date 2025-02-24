@@ -12,5 +12,10 @@
     "metadata": {
         "contact": {}
     }
+  },
+  "rag": {
+    "image": {
+        "max_tokens": 500
+    }
   }
 }
