@@ -26,17 +26,17 @@ func loadExtensionFile(filepath string) (ExtensionConfig, error) {
 		return nil, fmt.Errorf("failed to read extension file: %v", err)
 	}
 
-	var rawCfg map[string]any
-	if err := yaml.Unmarshal(raw, &rawCfg); err != nil {
+	var rawConfig map[string]any
+	if err := yaml.Unmarshal(raw, &rawConfig); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal extension file: %v", err)
 	}
 
-	ext := make(ExtensionConfig)
-	processRawConfig("", rawCfg, ext)
+	config := make(ExtensionConfig)
+	processRawConfig("", rawConfig, config)
 
 	fmt.Printf("Loaded extension file: %s\n", filepath)
 
-	return ext, nil
+	return config, nil
 }
 
 func processRawConfig(prefix string, raw map[string]any, config ExtensionConfig) {
@@ -83,7 +83,9 @@ func processRawConfig(prefix string, raw map[string]any, config ExtensionConfig)
 				}
 			}
 			config[normalizedPath] = fields
+
 		case map[string]any:
+			// found a nested structure, process it recursively
 			processRawConfig(path, val, config)
 		}
 	}
