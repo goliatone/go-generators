@@ -114,7 +114,7 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 	}
 
 	// process the top level object as type "Config"
-	processObject(structName, rootObj, types, ext)
+	processObject(structName, rootObj, types, ext, "")
 
 	// remove orphaned types from ovewriting stuff
 	types = pruneTypes(structName, types)
@@ -187,7 +187,11 @@ type FieldDef struct {
 // processObject recursively processes a JSON object into a StructDef.
 // It uses the given typeName (e.g. "Config", "Database") and
 // stores the result in the types map.
-func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig) {
+func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig, parentPath string) {
+	if parentPath == "" {
+		parentPath = typeName
+	}
+
 	if _, exists := types[typeName]; exists {
 		return
 	}
@@ -211,13 +215,13 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		case map[string]any:
 			nestedTypeName := toCamel(key)
 			typeNameField = nestedTypeName
-			processObject(nestedTypeName, v, types, ext)
+			processObject(nestedTypeName, v, types, ext, parentPath+"."+key)
 		case []any:
 			if len(v) > 0 {
 				if elemObj, ok := v[0].(map[string]any); ok {
 					singular := singularize(toCamel(key))
 					typeNameField = "[]" + singular
-					processObject(singular, elemObj, types, ext)
+					processObject(singular, elemObj, types, ext, parentPath+"."+key)
 				} else {
 					elemType := inferBasicType(v[0])
 					typeNameField = "[]" + elemType
@@ -243,43 +247,56 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 	// apply extension configuration, if available.
 	normalized := normalizeKey(typeName)
 	if extFields, ok := ext[normalized]; ok {
-		for _, extField := range extFields {
-			matched := false
+		applyExtensionFields(def, extFields)
+	}
 
-			for i, field := range def.Fields {
-				fname := normalizeKey(field.FieldName)
-				if strings.EqualFold(fname, extField.Name) {
-					fmt.Printf("override matching %s\n", field.FieldName)
-					if extField.Overwrite != "" {
-						def.Fields[i].FieldName = extField.Overwrite
-					}
+	// check for extensions using the full path
+	normalizedPath := normalizeKey(parentPath)
+	if extFields, ok := ext[normalizedPath]; ok && normalizedPath != normalized {
+		applyExtensionFields(def, extFields)
+	}
 
-					if extField.Type != "" {
-						def.Fields[i].TypeName = extField.Type
-					}
+	sort.Slice(def.Fields, func(i, j int) bool {
+		return def.Fields[i].FieldName < def.Fields[j].FieldName
+	})
+}
 
-					def.Fields[i].Setter = extField.Setter
+func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
+	for _, extField := range extFields {
+		matched := false
 
-					matched = true
-					break
+		for i, field := range def.Fields {
+			fname := normalizeKey(field.FieldName)
+			if strings.EqualFold(fname, extField.Name) {
+				fmt.Printf("override matching %s\n", field.FieldName)
+				if extField.Overwrite != "" {
+					def.Fields[i].FieldName = extField.Overwrite
 				}
-			}
 
-			if !matched && extField.Overwrite != "" && extField.Type != "" {
-				fmt.Printf("override adding field: %s\n", extField.Name)
-				def.Fields = append(def.Fields, FieldDef{
-					FieldName: extField.Overwrite,
-					TypeName:  extField.Type,
-					JSONKey:   extField.Name,
-					Setter:    extField.Setter,
-					Tags:      extField.Tags,
-				})
+				if extField.Type != "" {
+					def.Fields[i].TypeName = extField.Type
+				}
+
+				def.Fields[i].Setter = extField.Setter
+
+				if extField.Tags != nil {
+					def.Fields[i].Tags = extField.Tags
+				}
+				matched = true
+				break
 			}
 		}
 
-		sort.Slice(def.Fields, func(i, j int) bool {
-			return def.Fields[i].FieldName < def.Fields[j].FieldName
-		})
+		if !matched && extField.Overwrite != "" && extField.Type != "" {
+			fmt.Printf("override adding field: %s\n", extField.Name)
+			def.Fields = append(def.Fields, FieldDef{
+				FieldName: extField.Overwrite,
+				TypeName:  extField.Type,
+				JSONKey:   extField.Name,
+				Setter:    extField.Setter,
+				Tags:      extField.Tags,
+			})
+		}
 	}
 }
 
