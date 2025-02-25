@@ -26,14 +26,67 @@ func loadExtensionFile(filepath string) (ExtensionConfig, error) {
 		return nil, fmt.Errorf("failed to read extension file: %v", err)
 	}
 
-	var ext ExtensionConfig
-	if err := yaml.Unmarshal(raw, &ext); err != nil {
+	var rawConfig map[string]any
+	if err := yaml.Unmarshal(raw, &rawConfig); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal extension file: %v", err)
 	}
 
+	config := make(ExtensionConfig)
+	processRawConfig("", rawConfig, config)
+
 	fmt.Printf("Loaded extension file: %s\n", filepath)
 
-	return ext, nil
+	return config, nil
+}
+
+func processRawConfig(prefix string, raw map[string]any, config ExtensionConfig) {
+	for k, v := range raw {
+		path := k
+		if prefix != "" {
+			path = prefix + "." + k
+		}
+
+		switch val := v.(type) {
+		case []any:
+			fields := []ExtensionField{}
+			for _, item := range val {
+				if fieldMap, ok := item.(map[string]any); ok {
+					field := ExtensionField{}
+					if name, ok := fieldMap["name"].(string); ok {
+						field.Name = name
+					}
+
+					if override, ok := fieldMap["override"].(string); ok {
+						field.Overwrite = override
+					}
+
+					if typ, ok := fieldMap["type"].(string); ok {
+						field.Type = typ
+					}
+
+					if setter, ok := fieldMap["setter"].(bool); ok {
+						field.Setter = setter
+					}
+
+					if tagsMap, ok := fieldMap["tags"].(map[string]any); ok {
+						field.Tags = make(map[string]string)
+						for tk, tv := range tagsMap {
+							if strv, ok := tv.(string); ok {
+								field.Tags[tk] = strv
+							}
+						}
+					}
+
+					fields = append(fields, field)
+				}
+			}
+			config[path] = fields
+
+		case map[string]any:
+			// found a nested structure, process it recursively
+			processRawConfig(path, val, config)
+		}
+	}
 }
 
 func normalizeKey(s string) string {

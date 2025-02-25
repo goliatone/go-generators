@@ -10,7 +10,12 @@
   },
   "server": {
     "metadata": {
-        "contact": {}
+      "contact": {}
+    }
+  },
+  "rag": {
+    "image": {
+      "max_tokens": 500
     }
   }
 }

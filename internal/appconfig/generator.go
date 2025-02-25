@@ -114,7 +114,7 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 	}
 
 	// process the top level object as type "Config"
-	processObject(structName, rootObj, types, ext)
+	processObject(structName, rootObj, types, ext, "")
 
 	// remove orphaned types from ovewriting stuff
 	types = pruneTypes(structName, types)
@@ -187,10 +187,11 @@ type FieldDef struct {
 // processObject recursively processes a JSON object into a StructDef.
 // It uses the given typeName (e.g. "Config", "Database") and
 // stores the result in the types map.
-func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig) {
+func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig, parentPath string) {
 	if _, exists := types[typeName]; exists {
 		return
 	}
+
 	def := &StructDef{
 		Name:   typeName,
 		Fields: []FieldDef{},
@@ -203,24 +204,29 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 	}
 	sort.Strings(keys)
 
+	nestedPath := func(key string) string {
+		vpath := key
+		if parentPath != "" {
+			vpath = parentPath + "." + key
+		}
+		return vpath
+	}
+
 	for _, key := range keys {
 		val := obj[key]
-		fieldName := toCamel(key)
 		var typeNameField string
 		switch v := val.(type) {
 		case map[string]any:
-			nestedTypeName := toCamel(key)
-			typeNameField = nestedTypeName
-			processObject(nestedTypeName, v, types, ext)
+			typeNameField = toCamel(key)
+			processObject(typeNameField, v, types, ext, nestedPath(key))
 		case []any:
 			if len(v) > 0 {
 				if elemObj, ok := v[0].(map[string]any); ok {
 					singular := singularize(toCamel(key))
 					typeNameField = "[]" + singular
-					processObject(singular, elemObj, types, ext)
+					processObject(singular, elemObj, types, ext, nestedPath(key))
 				} else {
-					elemType := inferBasicType(v[0])
-					typeNameField = "[]" + elemType
+					typeNameField = "[]" + inferBasicType(v[0])
 				}
 			} else {
 				typeNameField = "[]any"
@@ -230,7 +236,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		}
 
 		def.Fields = append(def.Fields, FieldDef{
-			FieldName: fieldName,
+			FieldName: toCamel(key),
 			TypeName:  typeNameField,
 			JSONKey:   key,
 		})
@@ -240,32 +246,75 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		return def.Fields[i].FieldName < def.Fields[j].FieldName
 	})
 
-	// apply extension configuration, if available.
-	normalized := normalizeKey(typeName)
-	if extFields, ok := ext[normalized]; ok {
-		for _, extField := range extFields {
-			matched := false
+	// apply modifications based on type name (backward compatibility)
+	if extFields, ok := ext[normalizeKey(typeName)]; ok {
+		applyExtensionFields(def, extFields)
+	}
 
-			for i, field := range def.Fields {
-				fname := normalizeKey(field.FieldName)
-				if strings.EqualFold(fname, extField.Name) {
-					fmt.Printf("override matching %s\n", field.FieldName)
-					if extField.Overwrite != "" {
-						def.Fields[i].FieldName = extField.Overwrite
-					}
-
-					if extField.Type != "" {
-						def.Fields[i].TypeName = extField.Type
-					}
-
-					def.Fields[i].Setter = extField.Setter
-
-					matched = true
-					break
-				}
+	// apply modifications based on JSON path
+	if parentPath != "" {
+		// try with the full path
+		if extFields, ok := ext[parentPath]; ok {
+			applyExtensionFields(def, extFields)
+		}
+		// try with shortened path (without e.g. BaseConfig prefix)
+		if strings.HasPrefix(parentPath, typeName+".") {
+			shortenedPath := strings.TrimPrefix(parentPath, typeName+".")
+			if extFields, ok := ext[shortenedPath]; ok {
+				applyExtensionFields(def, extFields)
 			}
+		}
+	}
 
-			if !matched && extField.Overwrite != "" && extField.Type != "" {
+	sort.Slice(def.Fields, func(i, j int) bool {
+		return def.Fields[i].FieldName < def.Fields[j].FieldName
+	})
+}
+
+func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
+	// Helper function to check if a field already exists
+	fieldExists := func(name string) bool {
+		for _, field := range def.Fields {
+			if field.FieldName == name {
+				return true
+			}
+		}
+		return false
+	}
+
+	for _, extField := range extFields {
+		matched := false
+
+		// first update existing fields
+		for i, field := range def.Fields {
+			fname := normalizeKey(field.FieldName)
+			if strings.EqualFold(fname, extField.Name) {
+				fmt.Printf("override matching %s with extension %s\n", field.FieldName, extField.Name)
+
+				if extField.Overwrite != "" {
+					def.Fields[i].FieldName = extField.Overwrite
+				}
+
+				if extField.Type != "" {
+					fmt.Printf("Updating type for %s from %s to %s\n", field.FieldName, def.Fields[i].TypeName, extField.Type)
+					def.Fields[i].TypeName = extField.Type
+				}
+
+				def.Fields[i].Setter = extField.Setter
+
+				if extField.Tags != nil {
+					def.Fields[i].Tags = extField.Tags
+				}
+
+				matched = true
+				break
+			}
+		}
+
+		// next add new fields if they don't exist yet
+		if !matched && extField.Overwrite != "" && extField.Type != "" {
+			// if field already exists prevent duplication
+			if !fieldExists(extField.Overwrite) {
 				fmt.Printf("override adding field: %s\n", extField.Name)
 				def.Fields = append(def.Fields, FieldDef{
 					FieldName: extField.Overwrite,
@@ -274,12 +323,10 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 					Setter:    extField.Setter,
 					Tags:      extField.Tags,
 				})
+			} else {
+				fmt.Printf("skipping duplicate field: %s\n", extField.Overwrite)
 			}
 		}
-
-		sort.Slice(def.Fields, func(i, j int) bool {
-			return def.Fields[i].FieldName < def.Fields[j].FieldName
-		})
 	}
 }
 
