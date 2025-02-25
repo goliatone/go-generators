@@ -46,8 +46,6 @@ func processRawConfig(prefix string, raw map[string]any, config ExtensionConfig)
 			path = prefix + "." + k
 		}
 
-		normalizedPath := normalizeKey(path)
-
 		switch val := v.(type) {
 		case []any:
 			fields := []ExtensionField{}
@@ -82,7 +80,7 @@ func processRawConfig(prefix string, raw map[string]any, config ExtensionConfig)
 					fields = append(fields, field)
 				}
 			}
-			config[normalizedPath] = fields
+			config[path] = fields
 
 		case map[string]any:
 			// found a nested structure, process it recursively
