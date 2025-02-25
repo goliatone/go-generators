@@ -250,10 +250,22 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		applyExtensionFields(def, extFields)
 	}
 
-	// check for extensions using the full path
-	normalizedPath := normalizeKey(parentPath)
-	if extFields, ok := ext[normalizedPath]; ok && normalizedPath != normalized {
-		applyExtensionFields(def, extFields)
+	if parentPath != "" {
+		fmt.Printf("Check extension by path: %s\n", parentPath)
+
+		if extFields, ok := ext[parentPath]; ok {
+			applyExtensionFields(def, extFields)
+		}
+
+		// If the path starts with the struct name (like "BaseConfig."),
+		// also try without the prefix
+		if strings.HasPrefix(parentPath, typeName+".") {
+			shorterPath := strings.TrimPrefix(parentPath, typeName+".")
+
+			if extFields, ok := ext[shorterPath]; ok {
+				applyExtensionFields(def, extFields)
+			}
+		}
 	}
 
 	sort.Slice(def.Fields, func(i, j int) bool {
@@ -268,12 +280,14 @@ func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
 		for i, field := range def.Fields {
 			fname := normalizeKey(field.FieldName)
 			if strings.EqualFold(fname, extField.Name) {
-				fmt.Printf("override matching %s\n", field.FieldName)
+				fmt.Printf("override matching %s with extension %s\n", field.FieldName, extField.Name)
+
 				if extField.Overwrite != "" {
 					def.Fields[i].FieldName = extField.Overwrite
 				}
 
 				if extField.Type != "" {
+					fmt.Printf("Updating type for %s from %s to %s\n", field.FieldName, def.Fields[i].TypeName, extField.Type)
 					def.Fields[i].TypeName = extField.Type
 				}
 
