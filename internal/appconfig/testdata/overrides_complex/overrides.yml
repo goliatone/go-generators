@@ -19,3 +19,6 @@ server:
     tags:
       json: "-"
       koanf: "-"
+image:
+  - name: "max_tokens"
+    type: int
