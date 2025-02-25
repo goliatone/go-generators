@@ -1,5 +1,39 @@
 # Changelog
 
+# [0.14.0](https://github.com/goliatone/go-generators/compare/v0.13.0...v0.14.0) - (2025-02-25)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Generator support nested overrides ([f72bcc9](https://github.com/goliatone/go-generators/commit/f72bcc9b3d1ae27d1c3d16b45ea4b0359c3c1781))  - (goliatone)
+- Generator support nested overrides ([40646ac](https://github.com/goliatone/go-generators/commit/40646ac43d65f91a44ca9ae4a85226f4ab883e44))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.14.0 ([fe9eec9](https://github.com/goliatone/go-generators/commit/fe9eec9c02c4d8c5c3e2a7970888d4da46584827))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Nested object test ([31d9c40](https://github.com/goliatone/go-generators/commit/31d9c409b1f322670099719fb6bfef161f9f18cd))  - (goliatone)
+- Nested object test ([fe4dcc7](https://github.com/goliatone/go-generators/commit/fe4dcc7150662d539b8b85c88993b7d2028fa62c))  - (goliatone)
+
+## <!-- 22 -->🚧 WIP
+
+- Update generator to handle nested structs ([e4f0add](https://github.com/goliatone/go-generators/commit/e4f0add3c920810bc3bd276e95edf72c4bb5a67b))  - (goliatone)
+- Update generator to handle nested structs ([4e69bf4](https://github.com/goliatone/go-generators/commit/4e69bf4073571a283f1537ff1d9a11726cd7ccfb))  - (goliatone)
+- Update generator to handle nested structs ([cba892c](https://github.com/goliatone/go-generators/commit/cba892c200d816dcba1718e367d0ff13df8bf4c5))  - (goliatone)
+- Update generator to handle nested structs ([a0f0760](https://github.com/goliatone/go-generators/commit/a0f0760d5af132b820bf85d42de862e3fb191fb9))  - (goliatone)
+- Update generator to handle nested structs ([e5c670d](https://github.com/goliatone/go-generators/commit/e5c670d61e45b8054ca092f08ba4281bc1db6909))  - (goliatone)
+- Update generator to handle nested structs ([a4eb92d](https://github.com/goliatone/go-generators/commit/a4eb92d86f032be498ca220007948c90d191264c))  - (goliatone)
+- Update generator to handle nested structs ([e4b499e](https://github.com/goliatone/go-generators/commit/e4b499eae515f5ef12c39c0078185cc71895bc16))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.13.0 ([14c1199](https://github.com/goliatone/go-generators/commit/14c1199562f0d71247c17a1c6acee7636a266c73))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#17](https://github.com/goliatone/go-generators/pull/17): nested objects ([1a78dd3](https://github.com/goliatone/go-generators/commit/1a78dd3c641331f248fe59d8a0dfcb5d9fc0513c))  - (goliatone)
+
 # [0.13.0](https://github.com/goliatone/go-generators/compare/v0.12.0...v0.13.0) - (2025-02-11)
 
 ## <!-- 13 -->📦 Bumps
