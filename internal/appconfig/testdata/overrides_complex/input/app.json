@@ -17,10 +17,33 @@
     "metadata": {
       "contact": {}
     },
-    "routes": [
-        "/auth/login",
-        "/auth/logout",
-        "/auth/register"
+    "routes": ["/auth/login", "/auth/logout", "/auth/register"]
+  },
+  "auth": {
+    "roles": [
+      {
+        "name": "guest",
+        "grants": {}
+      },
+      {
+        "name": "editor",
+        "grants": {
+            "edit": "all"
+        }
+      },
+      {
+        "name": "admin",
+        "grants": {
+            "create": "all",
+            "edit": "all"
+        }
+      },
+      {
+        "name": "viewer",
+        "grants": {
+            "view": "all"
+        }
+      }
     ]
   },
   "url_manager": {

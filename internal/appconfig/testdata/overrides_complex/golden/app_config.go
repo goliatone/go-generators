@@ -3,11 +3,22 @@
 package config
 
 type BaseConfig struct {
+	Auth        Auth        `json:"auth" koanf:"auth"`
 	Persistence Persistence `json:"persistence" koanf:"persistence"`
 	Rag         Rag         `json:"rag" koanf:"rag"`
 	Server      Server      `json:"server" koanf:"server"`
 	URLManager  URLManager  `json:"url_manager" koanf:"url_manager"`
 	Views       Views       `json:"views" koanf:"views"`
+}
+
+type Auth struct {
+	Roles []Role `json:"roles" koanf:"roles"`
+}
+
+type Grants struct {
+	Create string `json:"create" koanf:"create"`
+	Edit   string `json:"edit" koanf:"edit"`
+	View   string `json:"view" koanf:"view"`
 }
 
 type Group struct {
@@ -43,6 +54,11 @@ type Persistence struct {
 
 type Rag struct {
 	Image Image `json:"image" koanf:"image"`
+}
+
+type Role struct {
+	Grants Grants `json:"grants" koanf:"grants"`
+	Name   string `json:"name" koanf:"name"`
 }
 
 type Server struct {
