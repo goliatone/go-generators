@@ -1,5 +1,25 @@
 # Changelog
 
+# [0.15.0](https://github.com/goliatone/go-generators/compare/v0.14.0...v0.15.0) - (2025-03-22)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.15.0 ([9e8bfd6](https://github.com/goliatone/go-generators/commit/9e8bfd6d18b25c662f38e28dae9a5cda3875b586))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Updated tests ([630c281](https://github.com/goliatone/go-generators/commit/630c281d0950a02f51f666cd9c21ada5dda601c6))  - (goliatone)
+- Support for arrays in override file. fix: name conflicts in attributes ([0d0e9c4](https://github.com/goliatone/go-generators/commit/0d0e9c49b59437e7893fbd193f7c4948fc5213b2))  - (goliatone)
+- Support for arrays in override file. fix: name conflicts in attributes ([9c7d815](https://github.com/goliatone/go-generators/commit/9c7d8154c027508b863380cf57d8067040b921df))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.14.0 ([ab94ad2](https://github.com/goliatone/go-generators/commit/ab94ad2973d4cec1816534a71ec6700541b3327a))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#18](https://github.com/goliatone/go-generators/pull/18): array support ([5a329ed](https://github.com/goliatone/go-generators/commit/5a329ed4650333687134e7b2692bfb3f5f8a39ae))  - (goliatone)
+
 # [0.14.0](https://github.com/goliatone/go-generators/compare/v0.13.0...v0.14.0) - (2025-02-25)
 
 ## <!-- 1 -->🐛 Bug Fixes
