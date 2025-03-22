@@ -6,7 +6,31 @@ type BaseConfig struct {
 	Persistence Persistence `json:"persistence" koanf:"persistence"`
 	Rag         Rag         `json:"rag" koanf:"rag"`
 	Server      Server      `json:"server" koanf:"server"`
+	URLManager  URLManager  `json:"url_manager" koanf:"url_manager"`
 	Views       Views       `json:"views" koanf:"views"`
+}
+
+type Group struct {
+	BaseURL string            `json:"base_url" koanf:"base_url"`
+	IsRoot  bool              `json:"is_root" koanf:"is_root"`
+	Name    string            `json:"name" koanf:"name"`
+	Routes  map[string]string `json:"routes" koanf:"routes"`
+}
+
+func (g *Group) SetBaseURL(val string) {
+	g.BaseURL = val
+}
+
+func (g *Group) SetIsRoot(val bool) {
+	g.IsRoot = val
+}
+
+func (g *Group) SetName(val string) {
+	g.Name = val
+}
+
+func (g *Group) SetRoutes(val map[string]string) {
+	g.Routes = val
 }
 
 type Image struct {
@@ -24,6 +48,7 @@ type Rag struct {
 type Server struct {
 	ErrorHandler func(err)      `json:"-" koanf:"-"`
 	Metadata     map[string]any `json:"metadata" koanf:"metadata"`
+	Routes       []string       `json:"routes" koanf:"routes"`
 }
 
 func (s *Server) SetErrorHandler(val func(err)) {
@@ -32,6 +57,10 @@ func (s *Server) SetErrorHandler(val func(err)) {
 
 func (s *Server) SetMetadata(val map[string]any) {
 	s.Metadata = val
+}
+
+type URLManager struct {
+	Groups []Group `json:"groups" koanf:"groups"`
 }
 
 type Views struct {

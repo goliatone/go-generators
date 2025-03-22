@@ -8,14 +8,37 @@
     "dir_os": "./views",
     "dir_fs": "./views"
   },
-  "server": {
-    "metadata": {
-      "contact": {}
-    }
-  },
   "rag": {
     "image": {
       "max_tokens": 500
     }
+  },
+  "server": {
+    "metadata": {
+      "contact": {}
+    },
+    "routes": [
+        "/auth/login",
+        "/auth/logout",
+        "/auth/register"
+    ]
+  },
+  "url_manager": {
+    "groups": [
+      {
+        "name": "backend",
+        "base_url": "http://localhost:4000",
+        "routes": {},
+        "is_root": true
+      },
+      {
+        "name": "frontend",
+        "base_url": "http://localhost:7680",
+        "routes": {
+          "auth.callback": "/integrations/:provider/:service/:id",
+          "auth.callback.error": "/integrations/:provider/:service/error"
+        }
+      }
+    ]
   }
 }
