@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"maps"
 	"os"
 	"path"
 	"sort"
@@ -15,6 +16,7 @@ import (
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
+	"github.com/goliatone/go-print"
 	"golang.org/x/tools/imports"
 	"gopkg.in/yaml.v3"
 )
@@ -221,28 +223,25 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 			processObject(typeNameField, v, types, ext, nestedPath(key))
 		case []any:
 			if len(v) > 0 {
-				// find the object in the array with the most attributes
-				fields := 0
-				var elemObj map[string]any
+				allObjects := []map[string]any{}
 				for _, item := range v {
-					if obj, ok := item.(map[string]any); ok && len(obj) > fields {
-						elemObj = obj
-						fields = len(obj)
+					if obj, ok := item.(map[string]any); ok {
+						allObjects = append(allObjects, obj)
 					}
 				}
 
-				if elemObj != nil {
-					singular := singularize((toCamel(key)))
-					typeNameField = "[]" + singular
-					processObject(singular, elemObj, types, ext, nestedPath(key))
+				if len(allObjects) > 0 {
+					// create an object with all fields from all objects in the array
+					combinedObj := mergeObjects(allObjects)
+					singular := singularize(toCamel(key))
+					singularTypeName := createContextualTypeName(singular, parentPath, types)
+					typeNameField = "[]" + singularTypeName
+
+					// process combined object to ensure all fields are included
+					processObject(singular, combinedObj, types, ext, nestedPath(key))
 				} else if len(v) > 0 {
-					if elemObj, ok := v[0].(map[string]any); ok {
-						singular := createContextualTypeName(key, parentPath, types)
-						typeNameField = "[]" + singular
-						processObject(singular, elemObj, types, ext, nestedPath(key))
-					} else {
-						typeNameField = "[]" + inferBasicType(v[0])
-					}
+					// not dealing with an object, we use the first element
+					typeNameField = "[]" + inferBasicType(v[0])
 				} else {
 					typeNameField = "[]any"
 				}
@@ -493,4 +492,32 @@ func createContextualTypeName(key, parentPath string, types map[string]*StructDe
 		}
 	}
 	return baseName
+}
+
+func mergeObjects(objects []map[string]any) map[string]any {
+	result := make(map[string]any)
+
+	// collect all unique keys
+	for _, obj := range objects {
+		fmt.Println("existing map " + print.MaybePrettyJSON(obj))
+		for k, v := range obj {
+			// when the key already exists pick non empty objects
+			if existingVal, exists := result[k]; exists {
+				if existingMap, existingIsMap := existingVal.(map[string]any); existingIsMap {
+					if newMap, newIsMap := v.(map[string]any); newIsMap && len(newMap) > 0 {
+						maps.Copy(existingMap, newMap)
+					}
+				}
+
+				if existingVal == nil && v != nil {
+					result[k] = v
+				}
+			} else {
+				// new key
+				result[k] = v
+			}
+		}
+	}
+
+	return result
 }
