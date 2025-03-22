@@ -16,7 +16,6 @@ import (
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
-	"github.com/goliatone/go-print"
 	"golang.org/x/tools/imports"
 	"gopkg.in/yaml.v3"
 )
@@ -499,7 +498,6 @@ func mergeObjects(objects []map[string]any) map[string]any {
 
 	// collect all unique keys
 	for _, obj := range objects {
-		fmt.Println("existing map " + print.MaybePrettyJSON(obj))
 		for k, v := range obj {
 			// when the key already exists pick non empty objects
 			if existingVal, exists := result[k]; exists {
