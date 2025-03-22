@@ -1,5 +1,19 @@
 # Changelog
 
+# [0.16.1](https://github.com/goliatone/go-generators/compare/v0.16.0...v0.16.1) - (2025-03-22)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Remove unused print ([8c158b3](https://github.com/goliatone/go-generators/commit/8c158b337f27eb8a46d979c7b916fc2698d2ae1f))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.16.1 ([89f6388](https://github.com/goliatone/go-generators/commit/89f638802562f0fb26b21f0a554240b6a2446d21))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.16.0 ([58a3752](https://github.com/goliatone/go-generators/commit/58a37529b1fc930c58956a1e2307b43548c4e86f))  - (goliatone)
+
 # [0.16.0](https://github.com/goliatone/go-generators/compare/v0.15.1...v0.16.0) - (2025-03-22)
 
 ## <!-- 13 -->📦 Bumps
