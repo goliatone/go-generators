@@ -15,7 +15,6 @@ import (
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
-	"github.com/goliatone/go-print"
 	"golang.org/x/tools/imports"
 	"gopkg.in/yaml.v3"
 )
@@ -226,7 +225,6 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 				fields := 0
 				var elemObj map[string]any
 				for _, item := range v {
-					fmt.Println(print.MaybePrettyJSON(item))
 					if obj, ok := item.(map[string]any); ok && len(obj) > fields {
 						elemObj = obj
 						fields = len(obj)
