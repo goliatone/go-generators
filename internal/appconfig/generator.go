@@ -15,6 +15,7 @@ import (
 	"github.com/ettle/strcase"
 	"github.com/gertd/go-pluralize"
 	common "github.com/goliatone/go-generators/internal/common/generator"
+	"github.com/goliatone/go-print"
 	"golang.org/x/tools/imports"
 	"gopkg.in/yaml.v3"
 )
@@ -217,16 +218,35 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		var typeNameField string
 		switch v := val.(type) {
 		case map[string]any:
-			typeNameField = toCamel(key)
+			typeNameField = createContextualTypeName(key, parentPath, types)
 			processObject(typeNameField, v, types, ext, nestedPath(key))
 		case []any:
 			if len(v) > 0 {
-				if elemObj, ok := v[0].(map[string]any); ok {
-					singular := singularize(toCamel(key))
+				// find the object in the array with the most attributes
+				fields := 0
+				var elemObj map[string]any
+				for _, item := range v {
+					fmt.Println(print.MaybePrettyJSON(item))
+					if obj, ok := item.(map[string]any); ok && len(obj) > fields {
+						elemObj = obj
+						fields = len(obj)
+					}
+				}
+
+				if elemObj != nil {
+					singular := singularize((toCamel(key)))
 					typeNameField = "[]" + singular
 					processObject(singular, elemObj, types, ext, nestedPath(key))
+				} else if len(v) > 0 {
+					if elemObj, ok := v[0].(map[string]any); ok {
+						singular := createContextualTypeName(key, parentPath, types)
+						typeNameField = "[]" + singular
+						processObject(singular, elemObj, types, ext, nestedPath(key))
+					} else {
+						typeNameField = "[]" + inferBasicType(v[0])
+					}
 				} else {
-					typeNameField = "[]" + inferBasicType(v[0])
+					typeNameField = "[]any"
 				}
 			} else {
 				typeNameField = "[]any"
@@ -446,4 +466,33 @@ func pruneTypes(rootType string, types map[string]*StructDef) map[string]*Struct
 		}
 	}
 	return pruned
+}
+
+func extractStructNameFromPath(path string) string {
+	parts := strings.Split(path, ".")
+	lastPart := parts[len(parts)-1]
+	lastPart = strings.TrimSuffix(lastPart, "[*]")
+	return singularize(toCamel(lastPart))
+}
+
+func createContextualTypeName(key, parentPath string, types map[string]*StructDef) string {
+	baseName := toCamel(key)
+
+	// for array items use the singular name
+	if strings.HasPrefix(parentPath, "[]") {
+		baseName = singularize(baseName)
+	}
+
+	if _, exists := types[baseName]; exists {
+		if parentPath != "" {
+			parts := strings.Split(parentPath, ".")
+			inmediateParent := parts[len(parts)-1]
+			parentPrefix := toCamel(inmediateParent)
+			if !strings.HasPrefix(baseName, parentPrefix) && !strings.HasSuffix(parentPrefix, baseName) {
+				contextualName := parentPrefix + baseName
+				return contextualName
+			}
+		}
+	}
+	return baseName
 }
