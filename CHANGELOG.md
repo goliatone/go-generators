@@ -1,5 +1,20 @@
 # Changelog
 
+# [0.16.0](https://github.com/goliatone/go-generators/compare/v0.15.1...v0.16.0) - (2025-03-22)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.16.0 ([eea1a2c](https://github.com/goliatone/go-generators/commit/eea1a2c470dbe7f17efc2ae9011c4e2ddee2da9c))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Support collecting object properties from all instances in array ([c9fb753](https://github.com/goliatone/go-generators/commit/c9fb7532e0a6558af8d00a1a2bedb7ccf7e7c067))  - (goliatone)
+- Support collecting object properties from all instances in array ([9ebaed4](https://github.com/goliatone/go-generators/commit/9ebaed4a4cd5b678c10075b3b62a970a341dec58))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.15.1 ([ee1098b](https://github.com/goliatone/go-generators/commit/ee1098b9a4be32a6ddd6d43e3cc8f540bba932a4))  - (goliatone)
+
 # [0.15.1](https://github.com/goliatone/go-generators/compare/v0.15.0...v0.15.1) - (2025-03-22)
 
 ## <!-- 1 -->🐛 Bug Fixes
