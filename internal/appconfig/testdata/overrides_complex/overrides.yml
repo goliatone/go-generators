@@ -23,3 +23,20 @@ rag:
   image:
     - name: "max_tokens"
       type: int
+url_manager.groups[*]:
+  - name: "name"
+    override: Name
+    type: string
+    setter: true
+  - name: "base_url"
+    override: BaseURL
+    type: string
+    setter: true
+  - name: "is_root"
+    override: IsRoot
+    type: bool
+    setter: true
+  - name: "routes"
+    override: Routes
+    type: map[string]string
+    setter: true
