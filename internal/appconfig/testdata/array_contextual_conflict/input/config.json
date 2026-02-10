@@ -1,0 +1,16 @@
+{
+  "left": {
+    "items": [
+      {
+        "value": "a"
+      }
+    ]
+  },
+  "right": {
+    "items": [
+      {
+        "name": "b"
+      }
+    ]
+  }
+}
