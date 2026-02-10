@@ -10,6 +10,7 @@ import (
 	"path"
 	"sort"
 	"strings"
+	"unicode"
 
 	"github.com/BurntSushi/toml"
 	"github.com/dave/jennifer/jen"
@@ -114,8 +115,13 @@ func (g *Generator) generateAppConfig(opts common.Options) error {
 		packageName = DefaultPackageName
 	}
 
+	typeRenames := []TypeRename{}
+
 	// process the top level object as type "Config"
-	processObject(structName, rootObj, types, ext, "")
+	processObject(structName, rootObj, types, ext, "", &typeRenames)
+
+	// preserve local type overrides that rename inferred object types
+	applyTypeRenameAliases(types, typeRenames)
 
 	// remove orphaned types from ovewriting stuff
 	types = pruneTypes(structName, types)
@@ -185,10 +191,15 @@ type FieldDef struct {
 	Tags      map[string]string
 }
 
+type TypeRename struct {
+	Old string
+	New string
+}
+
 // processObject recursively processes a JSON object into a StructDef.
 // It uses the given typeName (e.g. "Config", "Database") and
 // stores the result in the types map.
-func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig, parentPath string) {
+func processObject(typeName string, obj map[string]any, types map[string]*StructDef, ext ExtensionConfig, parentPath string, typeRenames *[]TypeRename) {
 	if _, exists := types[typeName]; exists {
 		return
 	}
@@ -219,7 +230,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 		switch v := val.(type) {
 		case map[string]any:
 			typeNameField = createContextualTypeName(key, parentPath, types)
-			processObject(typeNameField, v, types, ext, nestedPath(key))
+			processObject(typeNameField, v, types, ext, nestedPath(key), typeRenames)
 		case []any:
 			if len(v) > 0 {
 				allObjects := []map[string]any{}
@@ -237,7 +248,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 					typeNameField = "[]" + singularTypeName
 
 					// process combined object to ensure all fields are included
-					processObject(singular, combinedObj, types, ext, nestedPath(key))
+					processObject(singularTypeName, combinedObj, types, ext, nestedPath(key), typeRenames)
 				} else if len(v) > 0 {
 					// not dealing with an object, we use the first element
 					typeNameField = "[]" + inferBasicType(v[0])
@@ -264,20 +275,20 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 
 	// apply modifications based on type name (backward compatibility)
 	if extFields, ok := ext[normalizeKey(typeName)]; ok {
-		applyExtensionFields(def, extFields)
+		applyExtensionFields(def, extFields, typeRenames)
 	}
 
 	// apply modifications based on JSON path
 	if parentPath != "" {
 		// try with the full path
 		if extFields, ok := ext[parentPath]; ok {
-			applyExtensionFields(def, extFields)
+			applyExtensionFields(def, extFields, typeRenames)
 		}
 		// try with shortened path (without e.g. BaseConfig prefix)
 		if strings.HasPrefix(parentPath, typeName+".") {
 			shortenedPath := strings.TrimPrefix(parentPath, typeName+".")
 			if extFields, ok := ext[shortenedPath]; ok {
-				applyExtensionFields(def, extFields)
+				applyExtensionFields(def, extFields, typeRenames)
 			}
 		}
 	}
@@ -287,7 +298,7 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 	})
 }
 
-func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
+func applyExtensionFields(def *StructDef, extFields []ExtensionField, typeRenames *[]TypeRename) {
 	// Helper function to check if a field already exists
 	fieldExists := func(name string) bool {
 		for _, field := range def.Fields {
@@ -312,6 +323,7 @@ func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
 				}
 
 				if extField.Type != "" {
+					trackLocalTypeRename(def.Fields[i].TypeName, extField.Type, typeRenames)
 					fmt.Printf("Updating type for %s from %s to %s\n", field.FieldName, def.Fields[i].TypeName, extField.Type)
 					def.Fields[i].TypeName = extField.Type
 				}
@@ -343,6 +355,49 @@ func applyExtensionFields(def *StructDef, extFields []ExtensionField) {
 				fmt.Printf("skipping duplicate field: %s\n", extField.Overwrite)
 			}
 		}
+	}
+}
+
+func trackLocalTypeRename(oldType, newType string, typeRenames *[]TypeRename) {
+	if typeRenames == nil {
+		return
+	}
+	if oldType == newType {
+		return
+	}
+	if !isLikelyLocalTypeName(oldType) || !isLikelyLocalTypeName(newType) {
+		return
+	}
+	*typeRenames = append(*typeRenames, TypeRename{
+		Old: oldType,
+		New: newType,
+	})
+}
+
+func applyTypeRenameAliases(types map[string]*StructDef, typeRenames []TypeRename) {
+	for _, rename := range typeRenames {
+		sourceDef, exists := types[rename.Old]
+		if !exists {
+			continue
+		}
+		if _, exists := types[rename.New]; exists {
+			continue
+		}
+		types[rename.New] = cloneStructDef(sourceDef, rename.New)
+	}
+}
+
+func cloneStructDef(sourceDef *StructDef, name string) *StructDef {
+	fields := make([]FieldDef, len(sourceDef.Fields))
+	for i, field := range sourceDef.Fields {
+		clonedField := field
+		clonedField.Tags = maps.Clone(field.Tags)
+		fields[i] = clonedField
+	}
+
+	return &StructDef{
+		Name:   name,
+		Fields: fields,
 	}
 }
 
@@ -429,6 +484,48 @@ func extractBaseType(typ string) string {
 		}
 	}
 	return typ
+}
+
+func isLikelyLocalTypeName(typeName string) bool {
+	typeName = strings.TrimSpace(typeName)
+	if typeName == "" {
+		return false
+	}
+	if strings.HasPrefix(typeName, "[]") || strings.HasPrefix(typeName, "*") || strings.HasPrefix(typeName, "map[") || strings.HasPrefix(typeName, "func(") {
+		return false
+	}
+	if strings.Contains(typeName, ".") || strings.Contains(typeName, "[") || strings.Contains(typeName, "]") {
+		return false
+	}
+	if isBuiltInTypeName(typeName) {
+		return false
+	}
+	return isIdentifier(typeName)
+}
+
+func isBuiltInTypeName(typeName string) bool {
+	switch typeName {
+	case "bool", "byte", "complex64", "complex128", "error", "float32", "float64", "int", "int8", "int16", "int32", "int64",
+		"rune", "string", "uint", "uint8", "uint16", "uint32", "uint64", "uintptr", "any":
+		return true
+	default:
+		return false
+	}
+}
+
+func isIdentifier(value string) bool {
+	for i, r := range value {
+		if i == 0 {
+			if r != '_' && !unicode.IsLetter(r) {
+				return false
+			}
+			continue
+		}
+		if r != '_' && !unicode.IsLetter(r) && !unicode.IsDigit(r) {
+			return false
+		}
+	}
+	return true
 }
 
 // pruneTypes traverses the type graph starting at rootType (like "Config")
