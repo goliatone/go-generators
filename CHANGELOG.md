@@ -1,5 +1,24 @@
 # Changelog
 
+# [0.17.0](https://github.com/goliatone/go-generators/compare/v0.16.1...v0.17.0) - (2026-02-10)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Array contextual generation ([677b34f](https://github.com/goliatone/go-generators/commit/677b34f2b872b500b06bd2564b18fa7c642f0a63))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.17.0 ([b7edabf](https://github.com/goliatone/go-generators/commit/b7edabf7f932148be5b77b8d27a8e44ea20733e2))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.16.1 ([7d7e2d9](https://github.com/goliatone/go-generators/commit/7d7e2d9a00c062908200d0a0bf964699479c5e6b))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update docs ([bdc1647](https://github.com/goliatone/go-generators/commit/bdc164707726f0a4b160c284596a2b8a36cd5514))  - (goliatone)
+- Update test ([3001eff](https://github.com/goliatone/go-generators/commit/3001eff3bd72d277596ac717b33bf8de30bedf2b))  - (goliatone)
+
 # [0.16.1](https://github.com/goliatone/go-generators/compare/v0.16.0...v0.16.1) - (2025-03-22)
 
 ## <!-- 1 -->🐛 Bug Fixes
@@ -23,7 +42,6 @@
 ## <!-- 16 -->➕ Add
 
 - Support collecting object properties from all instances in array ([c9fb753](https://github.com/goliatone/go-generators/commit/c9fb7532e0a6558af8d00a1a2bedb7ccf7e7c067))  - (goliatone)
-- Support collecting object properties from all instances in array ([9ebaed4](https://github.com/goliatone/go-generators/commit/9ebaed4a4cd5b678c10075b3b62a970a341dec58))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -53,7 +71,6 @@
 
 - Updated tests ([630c281](https://github.com/goliatone/go-generators/commit/630c281d0950a02f51f666cd9c21ada5dda601c6))  - (goliatone)
 - Support for arrays in override file. fix: name conflicts in attributes ([0d0e9c4](https://github.com/goliatone/go-generators/commit/0d0e9c49b59437e7893fbd193f7c4948fc5213b2))  - (goliatone)
-- Support for arrays in override file. fix: name conflicts in attributes ([9c7d815](https://github.com/goliatone/go-generators/commit/9c7d8154c027508b863380cf57d8067040b921df))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -68,7 +85,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Generator support nested overrides ([f72bcc9](https://github.com/goliatone/go-generators/commit/f72bcc9b3d1ae27d1c3d16b45ea4b0359c3c1781))  - (goliatone)
-- Generator support nested overrides ([40646ac](https://github.com/goliatone/go-generators/commit/40646ac43d65f91a44ca9ae4a85226f4ab883e44))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -77,17 +93,10 @@
 ## <!-- 16 -->➕ Add
 
 - Nested object test ([31d9c40](https://github.com/goliatone/go-generators/commit/31d9c409b1f322670099719fb6bfef161f9f18cd))  - (goliatone)
-- Nested object test ([fe4dcc7](https://github.com/goliatone/go-generators/commit/fe4dcc7150662d539b8b85c88993b7d2028fa62c))  - (goliatone)
 
 ## <!-- 22 -->🚧 WIP
 
 - Update generator to handle nested structs ([e4f0add](https://github.com/goliatone/go-generators/commit/e4f0add3c920810bc3bd276e95edf72c4bb5a67b))  - (goliatone)
-- Update generator to handle nested structs ([4e69bf4](https://github.com/goliatone/go-generators/commit/4e69bf4073571a283f1537ff1d9a11726cd7ccfb))  - (goliatone)
-- Update generator to handle nested structs ([cba892c](https://github.com/goliatone/go-generators/commit/cba892c200d816dcba1718e367d0ff13df8bf4c5))  - (goliatone)
-- Update generator to handle nested structs ([a0f0760](https://github.com/goliatone/go-generators/commit/a0f0760d5af132b820bf85d42de862e3fb191fb9))  - (goliatone)
-- Update generator to handle nested structs ([e5c670d](https://github.com/goliatone/go-generators/commit/e5c670d61e45b8054ca092f08ba4281bc1db6909))  - (goliatone)
-- Update generator to handle nested structs ([a4eb92d](https://github.com/goliatone/go-generators/commit/a4eb92d86f032be498ca220007948c90d191264c))  - (goliatone)
-- Update generator to handle nested structs ([e4b499e](https://github.com/goliatone/go-generators/commit/e4b499eae515f5ef12c39c0078185cc71895bc16))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -106,9 +115,7 @@
 ## <!-- 16 -->➕ Add
 
 - Test tags ([e5f4aae](https://github.com/goliatone/go-generators/commit/e5f4aae808cf96c596c760f43a25b572582aaefc))  - (goliatone)
-- Test tags ([155276e](https://github.com/goliatone/go-generators/commit/155276e024e74d47740fc2d1c652875a353fe317))  - (goliatone)
 - Support tags ([f8701ef](https://github.com/goliatone/go-generators/commit/f8701efaa7b47bde037ad93d6011ddd4334a9d85))  - (goliatone)
-- Support tags ([d4508e0](https://github.com/goliatone/go-generators/commit/d4508e030ad70e7af7600bdb11006ee44c73d828))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -132,7 +139,6 @@
 ## <!-- 16 -->➕ Add
 
 - Test to handle meta ([7fb68ac](https://github.com/goliatone/go-generators/commit/7fb68acdcadc1a063a85692674dda00563007999))  - (goliatone)
-- Test to handle meta ([fe4321c](https://github.com/goliatone/go-generators/commit/fe4321c00fc4866f6934313f81c84bbbfced449d))  - (goliatone)
 - Update golden file for generator ([b0aa69b](https://github.com/goliatone/go-generators/commit/b0aa69b5e2940b9338afc45f0331cebe82050df0))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
@@ -180,7 +186,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Use goimports for package ([8a34b28](https://github.com/goliatone/go-generators/commit/8a34b28240b895f94fc6b44a05b929872cbff205))  - (goliatone)
-- Use goimports for package ([4541787](https://github.com/goliatone/go-generators/commit/45417879a9df90bb8ed688f8163a1efd6ac8aaa7))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -199,7 +204,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Use goimports to fix source ([dc3a2fd](https://github.com/goliatone/go-generators/commit/dc3a2fdcf6f9f532b70356ed76b19c7490d433f5))  - (goliatone)
-- Use goimports to fix source ([b847696](https://github.com/goliatone/go-generators/commit/b847696713aac80077f4889bf2c46c5421ee8586))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -222,8 +226,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Include import statement ([658ffe2](https://github.com/goliatone/go-generators/commit/658ffe21542f490548d1e7233be752186a7780eb))  - (goliatone)
-- Include import statement ([a4e692a](https://github.com/goliatone/go-generators/commit/a4e692a27b222f934d3ddbedaa2700527779e382))  - (goliatone)
-- Include import statement ([9e3bc67](https://github.com/goliatone/go-generators/commit/9e3bc67ed103bb143e94129a15a3307b2378ef07))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -242,7 +244,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Match json name to field ([381ced9](https://github.com/goliatone/go-generators/commit/381ced90e9324b49ec017a2950640373872c279a))  - (goliatone)
-- Match json name to field ([9691fe8](https://github.com/goliatone/go-generators/commit/9691fe89cdb1b1d8cd323114459fc6022f32fa0a))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -251,16 +252,11 @@
 ## <!-- 16 -->➕ Add
 
 - Create setter ([fb65e44](https://github.com/goliatone/go-generators/commit/fb65e4410f5eef5083fb4d20014a24b8e5da60e0))  - (goliatone)
-- Create setter ([869b7d9](https://github.com/goliatone/go-generators/commit/869b7d9c97f2c4a9eb704d57670804a8e3bd236a))  - (goliatone)
-- Create setter ([a404f45](https://github.com/goliatone/go-generators/commit/a404f45a72e9db585f727cf851f82e5507747c6b))  - (goliatone)
 - Setter for generator ([5849b8b](https://github.com/goliatone/go-generators/commit/5849b8b4ffac1de5af3849ecd6ad4c05e4658602))  - (goliatone)
-- Setter for generator ([8d35977](https://github.com/goliatone/go-generators/commit/8d35977f1dccfc29736c6f783eaf5ace257d5f0c))  - (goliatone)
 
 ## <!-- 22 -->🚧 WIP
 
 - Fix overrides ([db7b104](https://github.com/goliatone/go-generators/commit/db7b104a79466b00e0734f69755a7b9280fd93a7))  - (goliatone)
-- Fix overrides ([d8c3b3c](https://github.com/goliatone/go-generators/commit/d8c3b3c5aa0d3eabbaebc1e83202cc07f29cee72))  - (goliatone)
-- Fix overrides ([c85615f](https://github.com/goliatone/go-generators/commit/c85615ffda4fa765810610871679b9b80ec8fb9e))  - (goliatone)
 - Test for complex ([fec8a53](https://github.com/goliatone/go-generators/commit/fec8a53c354798fdf6cd55228e86a3f2b9ab38b1))  - (goliatone)
 - Fix output ([78952fa](https://github.com/goliatone/go-generators/commit/78952fa18fbe5106b8de925998b6a79a8875655b))  - (goliatone)
 
@@ -309,7 +305,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Better success message ([1ef17ae](https://github.com/goliatone/go-generators/commit/1ef17ae5240ceb64a8fa6ec431feef3d90ff67df))  - (goliatone)
-- Better success message ([ed603dd](https://github.com/goliatone/go-generators/commit/ed603ddf1e2f625d3fc458eb90a9b92c495e6cd9))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -321,8 +316,6 @@
 - Override generated fields based on file meta ([3be52ec](https://github.com/goliatone/go-generators/commit/3be52ecd9c5aba04780807e3686860022b816c42))  - (goliatone)
 - Flag for extension file ([92c0153](https://github.com/goliatone/go-generators/commit/92c01530b6f015a7e8248ae67298e40d91e4e712))  - (goliatone)
 - Extension file ([432fd97](https://github.com/goliatone/go-generators/commit/432fd9721e6a13a05744dae8e5660a1714261f6d))  - (goliatone)
-- Extension file ([39da61c](https://github.com/goliatone/go-generators/commit/39da61cc4687e232f298113890b49f6266ddb24c))  - (goliatone)
-- Extension file ([a975927](https://github.com/goliatone/go-generators/commit/a975927d09c73c12640f8437d39c904cf1e5ec13))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -335,7 +328,6 @@
 ## <!-- 7 -->⚙️ Miscellaneous Tasks
 
 - Update readme ([a695448](https://github.com/goliatone/go-generators/commit/a69544894cd1c6272ca4ea1712caff7394f5885c))  - (goliatone)
-- Update readme ([eb74e7d](https://github.com/goliatone/go-generators/commit/eb74e7d0dd118f6429e38e4373955ad0f509f0cf))  - (goliatone)
 
 # [0.8.0](https://github.com/goliatone/go-generators/compare/v0.7.0...v0.8.0) - (2025-02-07)
 
@@ -346,11 +338,7 @@
 ## <!-- 16 -->➕ Add
 
 - Test optional struct name ([c607a12](https://github.com/goliatone/go-generators/commit/c607a12dfd0ede453b70236ef513f61cafced17d))  - (goliatone)
-- Test optional struct name ([2f7b6f0](https://github.com/goliatone/go-generators/commit/2f7b6f0a364ba1c9eef5859d05d5048fb0de01f8))  - (goliatone)
 - Take flag for struct name ([c24e5dd](https://github.com/goliatone/go-generators/commit/c24e5ddcb3935c47c75b1c2c51bfc215532293dc))  - (goliatone)
-- Test optional struct name ([fdf80e7](https://github.com/goliatone/go-generators/commit/fdf80e7dd668ba75eb751fbb05d5e3b89db9040b))  - (goliatone)
-- Take flag for struct name ([ef11499](https://github.com/goliatone/go-generators/commit/ef11499eb95c7aa4c21dec0d5bc05484d8647a92))  - (goliatone)
-- Take flag for struct name ([a20520a](https://github.com/goliatone/go-generators/commit/a20520a7099da8d182e635b6ba34d5c406718477))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -377,9 +365,7 @@
 ## <!-- 16 -->➕ Add
 
 - Handle different file formats for config ([0f948fc](https://github.com/goliatone/go-generators/commit/0f948fc62c4c14cd570f1ae078f14fe0328f3626))  - (goliatone)
-- Handle different file formats for config ([dc38695](https://github.com/goliatone/go-generators/commit/dc386952e5e923b2672022e234340ab7a4c0dfac))  - (goliatone)
 - Test TOML for app config ([76229bb](https://github.com/goliatone/go-generators/commit/76229bb0c5f6c6aa9c0bc4e3de3ab83e7417e703))  - (goliatone)
-- Test TOML for app config ([48bdcf9](https://github.com/goliatone/go-generators/commit/48bdcf939b7fb57df7f09c4b86a98fa4aa1c259b))  - (goliatone)
 - Test data for YML config files ([9f0ac87](https://github.com/goliatone/go-generators/commit/9f0ac87bc0e0f486d635f29838a95d3312e1cb74))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
@@ -396,7 +382,6 @@
 
 - Manage complex types ([6614933](https://github.com/goliatone/go-generators/commit/661493394a128224afd0ff0cb81c9684b47c5216))  - (goliatone)
 - Ensure we try to use arrays in test ([3a0dd2f](https://github.com/goliatone/go-generators/commit/3a0dd2f5260dbc63b261349559ca8525bd9e19db))  - (goliatone)
-- Ensure we try to use arrays in test ([9e9142f](https://github.com/goliatone/go-generators/commit/9e9142f7a63fd745915a6ac6a742387d172e2896))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -405,12 +390,10 @@
 ## <!-- 16 -->➕ Add
 
 - Test support for complex types ([aa91b7a](https://github.com/goliatone/go-generators/commit/aa91b7acf511182b7f1a8d215b416916626801ca))  - (goliatone)
-- Test support for complex types ([ff0f2e1](https://github.com/goliatone/go-generators/commit/ff0f2e15f8016f4a2ba2650103619a9e0a757270))  - (goliatone)
 
 ## <!-- 2 -->🚜 Refactor
 
 - Functions that can be used in other places ([9c8164d](https://github.com/goliatone/go-generators/commit/9c8164d79847f0cfc0d175d9c2f7fd8b5be91b43))  - (goliatone)
-- Functions that can be used in other places ([b15ad63](https://github.com/goliatone/go-generators/commit/b15ad631c84ec9c8b135e6649eb6be670d29ee01))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -426,9 +409,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - General options ([f8f57b1](https://github.com/goliatone/go-generators/commit/f8f57b19cd7e1a5b88c03d3f5571b1a5b588f2b2))  - (goliatone)
-- General options ([b91b8e8](https://github.com/goliatone/go-generators/commit/b91b8e844a8a5c71c271448038402607f3a72d1a))  - (goliatone)
-- General options ([712e9ca](https://github.com/goliatone/go-generators/commit/712e9ca96308fcfb599a12269b85c77db35b8f08))  - (goliatone)
-- General options ([93f46bf](https://github.com/goliatone/go-generators/commit/93f46bfe6f5c36a1098ba341ff72d0bf174bd939))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -449,7 +429,6 @@
 - Make output optional ([8ee4191](https://github.com/goliatone/go-generators/commit/8ee41911976c2bf2cb5e6adcdd0f8344bb7f0f1e))  - (goliatone)
 - Sort keys to ensure deterministic output ([e0b816e](https://github.com/goliatone/go-generators/commit/e0b816e9b4905b8b08da7c7338a74735473d624e))  - (goliatone)
 - Update test data to be determinitstic ([4e2683b](https://github.com/goliatone/go-generators/commit/4e2683b51b13c408166e6e9479d0a27a6bcb2e07))  - (goliatone)
-- Update test data to be determinitstic ([d36c73b](https://github.com/goliatone/go-generators/commit/d36c73bf9faa4821e6670176de65e572bba29694))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -466,15 +445,12 @@
 ## <!-- 7 -->⚙️ Miscellaneous Tasks
 
 - Update tests ([fd0becf](https://github.com/goliatone/go-generators/commit/fd0becf42e201ced1a3fb960e95bf93d261aa941))  - (goliatone)
-- Update tests ([4d4c781](https://github.com/goliatone/go-generators/commit/4d4c78163478a6d3401996d8c57264dec49eaaa0))  - (goliatone)
 
 # [0.3.0](https://github.com/goliatone/go-generators/compare/v0.2.0...v0.3.0) - (2025-02-03)
 
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Use go pascal case for struct naming ([c49a40e](https://github.com/goliatone/go-generators/commit/c49a40e3b010c32516e852a85b5d5912ce496e30))  - (goliatone)
-- Use go pascal case for struct naming ([d88b70b](https://github.com/goliatone/go-generators/commit/d88b70b75e20e550449e85c81b8e6d87f22459b1))  - (goliatone)
-- Use go pascal case for struct naming ([6037624](https://github.com/goliatone/go-generators/commit/6037624b3ddc91bcba149b5a667460f2121d466c))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
 
@@ -515,10 +491,6 @@
 ## <!-- 16 -->➕ Add
 
 - App config generator ([8cdd1a9](https://github.com/goliatone/go-generators/commit/8cdd1a98c42adef24d63069c97c3735d4476d73a))  - (goliatone)
-- App config generator ([e795941](https://github.com/goliatone/go-generators/commit/e795941e8e9333c61e4c24812abde23358f952a8))  - (goliatone)
-- App config generator ([7a160d3](https://github.com/goliatone/go-generators/commit/7a160d3bfa6be822ee79d2eb50f63f73a28f327e))  - (goliatone)
-- App config generator ([2608f75](https://github.com/goliatone/go-generators/commit/2608f7517d0e1a7e7ad7c7806162d0a667cff007))  - (goliatone)
-- App config generator ([72afa4d](https://github.com/goliatone/go-generators/commit/72afa4dfab3142ed32f3b443890db918f13218a3))  - (goliatone)
 - Update release task ([af08202](https://github.com/goliatone/go-generators/commit/af08202fe4d81f1ec530fc82ade1d508aecb22c8))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
@@ -541,18 +513,12 @@
 ## <!-- 16 -->➕ Add
 
 - Cofig getters generator ([7f3e5d2](https://github.com/goliatone/go-generators/commit/7f3e5d2d60cbfb89c153bc72d0fcbddf13dff641))  - (goliatone)
-- Cofig getters generator ([012cd90](https://github.com/goliatone/go-generators/commit/012cd90f6520f639031acefe53e0a233a6992e15))  - (goliatone)
-- Cofig getters generator ([bdd296d](https://github.com/goliatone/go-generators/commit/bdd296d12af3a7d12e0a854bd415affc7437e740))  - (goliatone)
 - Config-getters cmd ([d815884](https://github.com/goliatone/go-generators/commit/d8158843d7faac056297b3971ed1d075f76d2199))  - (goliatone)
-- Config-getters cmd ([44383a0](https://github.com/goliatone/go-generators/commit/44383a0f2cfe6c0f7cb80797a0e39e481bdbf9cc))  - (goliatone)
 
 ## <!-- 2 -->🚜 Refactor
 
 - Move common functions to base generator ([a119460](https://github.com/goliatone/go-generators/commit/a119460a9867b6c4993366b7f1a31d1ff66430fd))  - (goliatone)
-- Move common functions to base generator ([6556bfa](https://github.com/goliatone/go-generators/commit/6556bfafd862c5ffe523ca18888535a08b824af9))  - (goliatone)
-- Move common functions to base generator ([bf75f8f](https://github.com/goliatone/go-generators/commit/bf75f8f9fe8501b62f87a944e6d9b5e96629406b))  - (goliatone)
 - Remove package opt ([69ebc3a](https://github.com/goliatone/go-generators/commit/69ebc3a06a0803f9f18eb199510aafa01ba6f2c0))  - (goliatone)
-- Remove package opt ([78b7846](https://github.com/goliatone/go-generators/commit/78b7846d39459603bd1291285b8da49890f8175b))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -571,7 +537,6 @@
 ## <!-- 1 -->🐛 Bug Fixes
 
 - Add more test cases to catch import path used to fail ([9799229](https://github.com/goliatone/go-generators/commit/979922984698d1a11fef6caf81e7f85c6c4d910a))  - (goliatone)
-- Add more test cases to catch import path used to fail ([f38ddb3](https://github.com/goliatone/go-generators/commit/f38ddb353db030ec9f5344120d4858e9275a3e20))  - (goliatone)
 - Handle import paths better ([60eb9c1](https://github.com/goliatone/go-generators/commit/60eb9c12988b2b94b4deb951544a94815f104c21))  - (goliatone)
 
 ## <!-- 13 -->📦 Bumps
@@ -581,7 +546,6 @@
 ## <!-- 16 -->➕ Add
 
 - New test case ([b56cbf2](https://github.com/goliatone/go-generators/commit/b56cbf23644418b3c79facebd170b4c0e3100de8))  - (goliatone)
-- New test case ([853b812](https://github.com/goliatone/go-generators/commit/853b812dfa779f0efbc7b6f21d2326afdb0bda09))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -596,7 +560,6 @@
 ## <!-- 2 -->🚜 Refactor
 
 - Move run logic to package ([f48c480](https://github.com/goliatone/go-generators/commit/f48c48015203e8316b8e43c45beac1d9a9a156fc))  - (goliatone)
-- Move run logic to package ([9ed4bcc](https://github.com/goliatone/go-generators/commit/9ed4bcc770c81537238059f448dad1fbf5085fc9))  - (goliatone)
 
 ## <!-- 3 -->📚 Documentation
 
@@ -643,7 +606,6 @@
 ## <!-- 16 -->➕ Add
 
 - Generator test ([644afcb](https://github.com/goliatone/go-generators/commit/644afcb085c5bd3f82540f362d6032330207595c))  - (goliatone)
-- Generator test ([11e72ea](https://github.com/goliatone/go-generators/commit/11e72ea67d9a7df835edc14bd30e4b2fd8eecf04))  - (goliatone)
 - Options generator ([76dd1b4](https://github.com/goliatone/go-generators/commit/76dd1b4db7b2898e984fd2b44d39b80e1ea01c63))  - (goliatone)
 - Base generator ([38d1cb4](https://github.com/goliatone/go-generators/commit/38d1cb4176edf7fca14d785f065762de20725dce))  - (goliatone)
 - Options-setter command ([69c7bd5](https://github.com/goliatone/go-generators/commit/69c7bd5696de72969e8871a52790192fca41c560))  - (goliatone)
