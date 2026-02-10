@@ -31,6 +31,13 @@ func TestExtensions(t *testing.T) {
 			inputFile:  "app.json",
 			extFile:    "overrides.yml",
 		},
+		{
+			name:       "overrides_type_rename",
+			structName: "Config",
+			pkgName:    "appconfig",
+			inputFile:  "app.json",
+			extFile:    "overrides.yml",
+		},
 	}
 
 	for _, tt := range tests {

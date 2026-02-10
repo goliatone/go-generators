@@ -26,6 +26,7 @@ func TestGenerator(t *testing.T) {
 		// generated file in golden (e.g. golden/app_config.go).
 		{name: "basic", structName: "Config", pkgName: "appconfig", inputFile: "config.json"},
 		{name: "complex", structName: "Config", pkgName: "appconfig_complex", inputFile: "config.json"},
+		{name: "array_contextual_conflict", structName: "Config", pkgName: "appconfig", inputFile: "config.json"},
 		{name: "yaml", structName: "YAMLConfig", pkgName: "main", inputFile: "config.yml"},
 		{name: "toml", structName: "TOMLConfig", pkgName: "main", inputFile: "config.toml"},
 	}
