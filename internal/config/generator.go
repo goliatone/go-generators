@@ -129,7 +129,12 @@ func (g *Generator) generateGetters(opts common.Options) error {
 
 	// process the generated code using goimports
 	// to format the code and adjust the imports
-	processed, err := imports.Process(opts.OutputFile, buf.Bytes(), nil)
+	processed, err := imports.Process(opts.OutputFile, buf.Bytes(), &imports.Options{
+		Comments:   true,
+		TabIndent:  true,
+		TabWidth:   4,
+		FormatOnly: false,
+	})
 	if err != nil {
 		return fmt.Errorf("failed to process imports on generated code: %v", err)
 	}
