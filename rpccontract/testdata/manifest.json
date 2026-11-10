@@ -1,0 +1,916 @@
+{
+  "schemaVersion": "rpc-contract/v1",
+  "definitions": {
+    "github.com/goliatone/go-command.CommandDispatchRequest": {
+      "kind": "object",
+      "properties": {
+        "command_id": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "ids": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "name": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "options": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command.DispatchOptions"
+          },
+          "required": false
+        },
+        "payload": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "json"
+            }
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command.CommandDispatchResponse": {
+      "kind": "object",
+      "properties": {
+        "receipt": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command.DispatchReceipt"
+          },
+          "required": true
+        },
+        "result": {
+          "schema": {
+            "kind": "json"
+          },
+          "required": false
+        },
+        "status_reference": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "validation_errors": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "ref",
+              "ref": "github.com/goliatone/go-command.CommandDispatchValidationError"
+            }
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command.CommandDispatchValidationError": {
+      "kind": "object",
+      "properties": {
+        "code": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "details": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "json"
+            }
+          },
+          "required": false
+        },
+        "message": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "path": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command.DedupPolicy": {
+      "kind": "enum",
+      "values": [
+        "",
+        "drop",
+        "ignore",
+        "merge",
+        "replace"
+      ]
+    },
+    "github.com/goliatone/go-command.DispatchOptions": {
+      "kind": "object",
+      "properties": {
+        "CorrelationID": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "DedupPolicy": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command.DedupPolicy"
+          },
+          "required": true
+        },
+        "Delay": {
+          "schema": {
+            "kind": "ref",
+            "ref": "time.Duration"
+          },
+          "required": true
+        },
+        "IdempotencyKey": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "Metadata": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "json"
+            }
+          },
+          "required": true
+        },
+        "Mode": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command.ExecutionMode"
+          },
+          "required": true
+        },
+        "RunAt": {
+          "schema": {
+            "kind": "string",
+            "nullable": true,
+            "encoding": "date-time"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command.DispatchReceipt": {
+      "kind": "object",
+      "properties": {
+        "Accepted": {
+          "schema": {
+            "kind": "boolean"
+          },
+          "required": true
+        },
+        "CommandID": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "CorrelationID": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "DispatchID": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "EnqueuedAt": {
+          "schema": {
+            "kind": "string",
+            "nullable": true,
+            "encoding": "date-time"
+          },
+          "required": true
+        },
+        "Mode": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command.ExecutionMode"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command.ExecutionMode": {
+      "kind": "enum",
+      "values": [
+        "",
+        "inline",
+        "queued"
+      ]
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input": {
+      "kind": "object",
+      "properties": {
+        "at": {
+          "schema": {
+            "kind": "string",
+            "encoding": "date-time"
+          },
+          "required": true
+        },
+        "bytes": {
+          "schema": {
+            "kind": "string",
+            "nullable": true,
+            "encoding": "base64"
+          },
+          "required": true
+        },
+        "count": {
+          "schema": {
+            "kind": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "required": true
+        },
+        "labels": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": true
+        },
+        "lookup": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "ref",
+              "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Shared"
+            }
+          },
+          "required": true
+        },
+        "optional": {
+          "schema": {
+            "kind": "string",
+            "nullable": true
+          },
+          "required": false
+        },
+        "pair": {
+          "schema": {
+            "kind": "array",
+            "element": {
+              "kind": "integer",
+              "minimum": 0,
+              "maximum": 65535
+            },
+            "length": 2
+          },
+          "required": true
+        },
+        "shared": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Shared",
+            "nullable": true
+          },
+          "required": true
+        },
+        "state": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.State"
+          },
+          "required": true
+        },
+        "wide": {
+          "schema": {
+            "kind": "string",
+            "encoding": "json-string"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.NotifyInput": {
+      "kind": "object",
+      "properties": {
+        "message": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result": {
+      "kind": "object",
+      "properties": {
+        "count": {
+          "schema": {
+            "kind": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "required": true
+        },
+        "data": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "ok": {
+          "schema": {
+            "kind": "boolean"
+          },
+          "required": true
+        },
+        "result": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "shared": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Shared"
+          },
+          "required": true
+        },
+        "text": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "value": {
+          "schema": {
+            "kind": "boolean"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Shared": {
+      "kind": "object",
+      "properties": {
+        "name": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "next": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Shared",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.State": {
+      "kind": "enum",
+      "values": [
+        "done",
+        "ready"
+      ]
+    },
+    "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges": {
+      "kind": "object",
+      "properties": {
+        "-": {
+          "schema": {
+            "kind": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "required": false
+        },
+        "number": {
+          "schema": {
+            "kind": "string",
+            "encoding": "json-string"
+          },
+          "required": true
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.Error": {
+      "kind": "object",
+      "properties": {
+        "category": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "code": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "details": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "json"
+            }
+          },
+          "required": false
+        },
+        "message": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": true
+        },
+        "retryable": {
+          "schema": {
+            "kind": "boolean"
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input"
+          },
+          "required": true
+        },
+        "meta": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.RequestMeta"
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges"
+          },
+          "required": true
+        },
+        "meta": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.RequestMeta"
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.RequestMeta": {
+      "kind": "object",
+      "properties": {
+        "actorId": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "correlationId": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "headers": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "params": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "permissions": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "query": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "array",
+              "nullable": true,
+              "element": {
+                "kind": "string"
+              }
+            }
+          },
+          "required": false
+        },
+        "requestId": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        },
+        "roles": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "scope": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "json"
+            }
+          },
+          "required": false
+        },
+        "tenant": {
+          "schema": {
+            "kind": "string"
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*[]string]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "array",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*bool]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "boolean",
+            "nullable": true
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result",
+            "nullable": true
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*int32]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "integer",
+            "nullable": true,
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*map[string]string]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "map",
+            "nullable": true,
+            "element": {
+              "kind": "string"
+            }
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[*string]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "string",
+            "nullable": true
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result"
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "github.com/goliatone/go-command/rpc.ResponseEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges]": {
+      "kind": "object",
+      "properties": {
+        "data": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges"
+          },
+          "required": false
+        },
+        "error": {
+          "schema": {
+            "kind": "ref",
+            "ref": "github.com/goliatone/go-command/rpc.Error",
+            "nullable": true
+          },
+          "required": false
+        }
+      }
+    },
+    "time.Duration": {
+      "kind": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    }
+  },
+  "endpoints": {
+    "example.boolean": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*bool]"
+      }
+    },
+    "example.echo": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result]"
+      }
+    },
+    "example.map": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*map[string]string]"
+      }
+    },
+    "example.nullable": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result]"
+      }
+    },
+    "example.number": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*int32]"
+      }
+    },
+    "example.slice": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*[]string]"
+      }
+    },
+    "example.string": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[*string]"
+      }
+    },
+    "example.wire_edges": {
+      "request": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.RequestEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges]"
+      },
+      "response": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/rpc.ResponseEnvelope[github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges]"
+      }
+    }
+  },
+  "commands": {
+    "example.echo": {
+      "input": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Input"
+      },
+      "result": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.Result"
+      },
+      "resultMode": "optional"
+    },
+    "example.notify": {
+      "input": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.NotifyInput"
+      },
+      "resultMode": "receipt"
+    },
+    "example.wire_edges": {
+      "input": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges"
+      },
+      "result": {
+        "kind": "ref",
+        "ref": "github.com/goliatone/go-command/examples/rpc/tsgen/fixture.WireEdges"
+      },
+      "resultMode": "optional"
+    }
+  },
+  "canonical": {
+    "CommandDispatchRequest": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command.CommandDispatchRequest"
+    },
+    "CommandDispatchResponse": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command.CommandDispatchResponse"
+    },
+    "DispatchOptions": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command.DispatchOptions"
+    },
+    "DispatchReceipt": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command.DispatchReceipt"
+    },
+    "Error": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command/rpc.Error"
+    },
+    "RequestMeta": {
+      "kind": "ref",
+      "ref": "github.com/goliatone/go-command/rpc.RequestMeta"
+    }
+  },
+  "fingerprint": "sha256:27005bdd97dbca8e17cac18ff0ee3cca310c4f35ba5ed99155ef8001aa9de667"
+}

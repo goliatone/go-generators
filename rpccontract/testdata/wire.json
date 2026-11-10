@@ -1,0 +1,274 @@
+{
+  "dispatchFailure": {
+    "data": {
+      "receipt": {
+        "Accepted": false,
+        "Mode": "",
+        "CommandID": "example.echo",
+        "DispatchID": "",
+        "EnqueuedAt": null,
+        "CorrelationID": ""
+      },
+      "result": {
+        "ok": false,
+        "value": false,
+        "count": 0,
+        "text": "failed",
+        "data": "failure data",
+        "result": "failure result",
+        "shared": {
+          "name": ""
+        }
+      },
+      "validation_errors": [
+        {
+          "path": "count",
+          "code": "INVALID",
+          "message": "invalid count"
+        }
+      ]
+    }
+  },
+  "dispatchInline": {
+    "data": {
+      "receipt": {
+        "Accepted": true,
+        "Mode": "inline",
+        "CommandID": "example.echo",
+        "DispatchID": "",
+        "EnqueuedAt": null,
+        "CorrelationID": "corr"
+      },
+      "result": {
+        "ok": true,
+        "value": false,
+        "count": 0,
+        "text": "",
+        "data": "application data",
+        "result": "application result",
+        "shared": {
+          "name": "shared"
+        }
+      }
+    }
+  },
+  "dispatchQueued": {
+    "data": {
+      "receipt": {
+        "Accepted": true,
+        "Mode": "queued",
+        "CommandID": "example.echo",
+        "DispatchID": "dispatch-1",
+        "EnqueuedAt": "2026-01-02T03:04:05Z",
+        "CorrelationID": "corr"
+      },
+      "status_reference": "/status/dispatch-1"
+    }
+  },
+  "dispatchRequest": {
+    "data": {
+      "command_id": "example.echo",
+      "name": "legacy.ignored",
+      "payload": {
+        "at": "2026-01-02T03:04:05Z",
+        "bytes": "AAH/",
+        "count": 9007199254740991,
+        "labels": [],
+        "lookup": {
+          "7": {
+            "name": "seven"
+          }
+        },
+        "pair": [
+          0,
+          65535
+        ],
+        "shared": {
+          "name": "shared",
+          "next": {
+            "name": "nested"
+          }
+        },
+        "state": "ready",
+        "wide": "18446744073709551615"
+      },
+      "ids": [
+        "target-1",
+        "target-2"
+      ],
+      "options": {
+        "Mode": "queued",
+        "IdempotencyKey": "idempotent",
+        "DedupPolicy": "drop",
+        "Delay": 1000000000,
+        "RunAt": null,
+        "CorrelationID": "corr",
+        "Metadata": {
+          "source": "fixture"
+        }
+      }
+    },
+    "meta": {
+      "actorId": "actor",
+      "roles": [
+        "operator"
+      ],
+      "requestId": "request",
+      "correlationId": "corr",
+      "scope": {
+        "scope": "fixture"
+      },
+      "headers": {
+        "x-fixture": "yes"
+      },
+      "params": {
+        "id": "one"
+      },
+      "query": {
+        "q": [
+          "one",
+          "two"
+        ]
+      }
+    }
+  },
+  "error": {
+    "data": {
+      "ok": false,
+      "value": false,
+      "count": 0,
+      "text": "",
+      "data": "",
+      "result": "",
+      "shared": {
+        "name": ""
+      }
+    },
+    "error": {
+      "code": "DENIED",
+      "message": "denied",
+      "category": "authorization",
+      "details": {
+        "reason": "fixture"
+      }
+    }
+  },
+  "input": {
+    "shared": {
+      "name": "shared",
+      "next": {
+        "name": "nested"
+      }
+    },
+    "count": 9007199254740991,
+    "wide": "18446744073709551615",
+    "state": "ready",
+    "labels": [],
+    "lookup": {
+      "7": {
+        "name": "seven"
+      }
+    },
+    "bytes": "AAH/",
+    "at": "2026-01-02T03:04:05Z",
+    "pair": [
+      0,
+      65535
+    ]
+  },
+  "inputMin": {
+    "shared": null,
+    "optional": "",
+    "count": -9007199254740991,
+    "wide": "18446744073709551615",
+    "state": "ready",
+    "labels": null,
+    "lookup": null,
+    "bytes": null,
+    "at": "2026-01-02T03:04:05Z",
+    "pair": [
+      0,
+      65535
+    ]
+  },
+  "object": {
+    "data": {
+      "ok": true,
+      "value": false,
+      "count": 0,
+      "text": "",
+      "data": "application data",
+      "result": "application result",
+      "shared": {
+        "name": "shared"
+      }
+    }
+  },
+  "omittedEmpty": {},
+  "omittedFalse": {},
+  "omittedMap": {},
+  "omittedNil": {},
+  "omittedSlice": {},
+  "omittedZero": {},
+  "presentEmpty": {
+    "data": ""
+  },
+  "presentFalse": {
+    "data": false
+  },
+  "presentMap": {
+    "data": {}
+  },
+  "presentNull": {
+    "data": null
+  },
+  "presentSlice": {
+    "data": []
+  },
+  "presentZero": {
+    "data": 0
+  },
+  "request": {
+    "data": {
+      "shared": {
+        "name": "shared",
+        "next": {
+          "name": "nested"
+        }
+      },
+      "count": 9007199254740991,
+      "wide": "18446744073709551615",
+      "state": "ready",
+      "labels": [],
+      "lookup": {
+        "7": {
+          "name": "seven"
+        }
+      },
+      "bytes": "AAH/",
+      "at": "2026-01-02T03:04:05Z",
+      "pair": [
+        0,
+        65535
+      ]
+    },
+    "meta": {}
+  },
+  "wireEdgesInput": {
+    "-": 7,
+    "number": "9007199254740993"
+  },
+  "wireEdgesRequest": {
+    "data": {
+      "-": 7,
+      "number": "9007199254740993"
+    },
+    "meta": {}
+  },
+  "wireEdgesResponse": {
+    "data": {
+      "-": 7,
+      "number": "9007199254740993"
+    }
+  }
+}

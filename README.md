@@ -26,6 +26,40 @@ go install github.com/goliatone/go-generators/cmd/app-config@latest
 
 ## Available Generators
 
+
+### RPC contracts to TypeScript
+
+`rpccontract.Generate(manifestJSON)` provides a reusable, side-effect-free emitter. The `rpc-contract-ts` CLI reads the same versioned Go-owned JSON manifest. It emits concrete JSON types, method and command maps, and transport-agnostic `createEndpoints` / `createDispatcher` helpers. Callbacks preserve `{ data?: T }`, reject RPC errors through the existing host client, and leave operational failure data intact. Dispatch preserves Go field casing and forwards IDs separately from payloads. No server, route discovery or Go application dependency is required by the emitter.
+
+From this source checkout, with Go dependencies already cached:
+
+```sh
+GOWORK=off GOPROXY=off GOSUMDB=off go run ./cmd/rpc-contract-ts \
+  -manifest <manifest.json> -out <contracts.ts>
+GOWORK=off GOPROXY=off GOSUMDB=off go run ./cmd/rpc-contract-ts \
+  -manifest <manifest.json> -out <contracts.ts> --check
+```
+
+`--check` never writes inputs or outputs, including when output is missing. Drift returns a nonzero exit status; it does not classify compatibility. Generation rejects unsupported schema versions, unresolved references, ambiguous JSON declarations and fingerprint mismatches. Explicit opaque JSON is emitted as `JsonValue`; missing type information is an error. TypeScript's `number` cannot enforce numeric ranges: typed Go adapters use the producer's `DecodeContractJSON[T]` on original input and `ValidateContractValue` before output serialization. Canonical serialized-JSON checking alone does not reproduce Go's typed decoding semantics.
+
+After R2-G is published, replace the release placeholder with its verified tag and commit that exact tool pin in the consuming application's generation recipe. Never use a moving tag for reproducible generation:
+
+```go
+//go:generate go run ./internal/rpcexport -out contracts
+//go:generate go run github.com/goliatone/go-generators/cmd/rpc-contract-ts@<published-R2-G-tag> -manifest contracts/manifest.json -out contracts/contracts.ts
+```
+
+The first command is the application's explicit offline Go export program. Pre-create its output directory. Pre-cache the pinned tool and Go dependencies, then run `GOWORK=off GOPROXY=off GOSUMDB=off go generate ./...`. Normal builds and tests do not generate files. Run the same pinned CLI with `--check` in CI. Publication and later go-command CLI adoption remain separate release steps.
+
+The pre-release integration harness verifies the recorded Go source archive, runs its exporter twice in a disposable directory, emits TypeScript, executes the producer review regressions, compiles fresh Go JSON literals with strict positive/negative consumers, and tests real-wire callbacks:
+
+```sh
+python3 rpccontract/interop/verify.py --tsc <installed-typescript-bin/tsc>
+```
+
+This needs cached Go dependencies, Python, Node and an installed TypeScript compiler; it does not download tools. The checked fixture and golden files live under `rpccontract/testdata`; the frozen producer snapshot and its digest are under `.ctx/specs/rpc-contract-typescript/support/evidence`. This source proof is distinct from future published-consumer and live HTTP checks.
+
+
 ### App Config
 
 The `app-config` generator reads a given JSON file and automatically generates Go struct definitions that mirror the JSON configuration. This is especially useful when you want to create configuration types directly from a JSON file, reducing boilerplate and ensuring that your configuration structs stay in sync with your JSON.

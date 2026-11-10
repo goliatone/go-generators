@@ -1,0 +1,12 @@
+{
+  "preserve_dash_and_quoted_number": true,
+  "preserve_safe_alias_and_unknown_fields": true,
+  "preserve_safe_duplicate_merge": true,
+  "reject_alias_bounds_bypass": true,
+  "reject_ambiguous_canonical_alias": true,
+  "reject_ambiguous_canonical_duplicate": true,
+  "reject_duplicate_merge_bounds_bypass": true,
+  "reject_normalized_command_id_collision": true,
+  "reject_unquoted_json_number": true,
+  "reject_unsafe_egress": true
+}
