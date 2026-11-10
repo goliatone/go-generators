@@ -1,5 +1,19 @@
 # Changelog
 
+# [0.18.0](https://github.com/goliatone/go-generators/compare/v0.17.0...v0.18.0) - (2026-11-10)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.18.0 ([9f924ea](https://github.com/goliatone/go-generators/commit/9f924eab5ca8c564a364c62749dd83e2d2f118fa))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Command type data ([a84c588](https://github.com/goliatone/go-generators/commit/a84c588b09c32715c3b8b9214f99b5954a47834f))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.17.0 ([b5a22b3](https://github.com/goliatone/go-generators/commit/b5a22b36f051020b36c481534e8573547f9f1787))  - (goliatone)
+
 # [0.17.0](https://github.com/goliatone/go-generators/compare/v0.16.1...v0.17.0) - (2026-02-10)
 
 ## <!-- 1 -->🐛 Bug Fixes
