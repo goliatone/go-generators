@@ -285,8 +285,8 @@ func processObject(typeName string, obj map[string]any, types map[string]*Struct
 			applyExtensionFields(def, extFields, typeRenames)
 		}
 		// try with shortened path (without e.g. BaseConfig prefix)
-		if strings.HasPrefix(parentPath, typeName+".") {
-			shortenedPath := strings.TrimPrefix(parentPath, typeName+".")
+		if after, ok := strings.CutPrefix(parentPath, typeName+"."); ok {
+			shortenedPath := after
 			if extFields, ok := ext[shortenedPath]; ok {
 				applyExtensionFields(def, extFields, typeRenames)
 			}

@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"maps"
 	"sort"
 	"strings"
 )
@@ -339,9 +340,7 @@ func aliasCycle(m *ContractManifest, s WireSchema, seen map[string]bool) error {
 			return fmt.Errorf("cyclic reference alias %q", s.Ref)
 		}
 		next := map[string]bool{}
-		for k, v := range seen {
-			next[k] = v
-		}
+		maps.Copy(next, seen)
 		next[s.Ref] = true
 		return aliasCycle(m, m.Definitions[s.Ref], next)
 	case "union":

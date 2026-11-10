@@ -8,7 +8,7 @@ import (
 
 type LogLevel int
 
-type Logger interface{}
+type Logger any
 
 // Parser represents a cron expression parser type
 type Parser int
