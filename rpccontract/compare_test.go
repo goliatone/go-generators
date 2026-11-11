@@ -192,7 +192,7 @@ func TestCompareUnionReferencesAndFailedBranches(t *testing.T) {
 	// Failed branch proofs must not be reused as successful recursive proofs.
 	source := obj(true, integer(0, 10))
 	target := WireSchema{Kind: "union", Variants: []WireSchema{obj(true, integer(1, 9)), obj(true, integer(1, 9))}}
-	if included(a, source, b, target, "request", map[string]bool{}) {
+	if newSchemaRelation(a, b, "request").check(source, target) {
 		t.Fatal("failed branch accepted")
 	}
 }

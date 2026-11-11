@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"maps"
 	"sort"
 	"strings"
 )
@@ -333,22 +332,35 @@ func node(m *ContractManifest, s WireSchema, path string, depth int) error {
 
 // Recursive object/array/map types are productive; bare aliases or union-only
 // cycles cannot be represented as TypeScript aliases.
-func aliasCycle(m *ContractManifest, s WireSchema, seen map[string]bool) error {
-	switch s.Kind {
-	case "ref":
-		if seen[s.Ref] {
-			return fmt.Errorf("cyclic reference alias %q", s.Ref)
-		}
-		next := map[string]bool{}
-		maps.Copy(next, seen)
-		next[s.Ref] = true
-		return aliasCycle(m, m.Definitions[s.Ref], next)
-	case "union":
-		for _, n := range s.Variants {
-			if err := aliasCycle(m, n, seen); err != nil {
+func aliasCycle(m *ContractManifest, s WireSchema, active map[string]bool) error {
+	// Cache only fully checked aliases. Shared union DAGs must not expand once
+	// per path, and an active alias still denotes an unproductive cycle.
+	checked := map[string]bool{}
+	var visit func(WireSchema) error
+	visit = func(s WireSchema) error {
+		switch s.Kind {
+		case "ref":
+			if active[s.Ref] {
+				return fmt.Errorf("cyclic reference alias %q", s.Ref)
+			}
+			if checked[s.Ref] {
+				return nil
+			}
+			active[s.Ref] = true
+			err := visit(m.Definitions[s.Ref])
+			delete(active, s.Ref)
+			if err != nil {
 				return err
 			}
+			checked[s.Ref] = true
+		case "union":
+			for _, n := range s.Variants {
+				if err := visit(n); err != nil {
+					return err
+				}
+			}
 		}
+		return nil
 	}
-	return nil
+	return visit(s)
 }

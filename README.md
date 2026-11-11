@@ -62,7 +62,10 @@ redirection occurs before the CLI can read or validate it.
 
 Reports contain both fingerprints, a classification and sorted changes with
 JSON-pointer paths, direction, code and explanation. Paths through references
-identify the resolved schema at the usage site. Classifications are `unchanged`,
+identify the resolved schema at the usage site. Within each root and direction,
+a shared reference pair is reported at its first sorted depth-first path; reports
+do not enumerate every expanded path through a shared or recursive graph.
+Classifications are `unchanged`,
 `compatible`, `additive` and `potentially_breaking`; the last dominates, then
 additive, then compatible. Fingerprint-only/representation changes remain visible.
 
@@ -76,7 +79,9 @@ additive, then compatible. Fingerprint-only/representation changes remain visibl
 | Change string encoding or receipt/result mode | Review required | Review required |
 
 New operations/definitions are additive; removal is potentially breaking.
-Shared/recursive types are checked at each known usage direction. Union inclusion
+Shared/recursive types are checked at each root and known usage direction.
+Memoized pair graphs propagate failures through cycles; unknown canonical entries
+are compared through their referenced definitions. Union inclusion
 is conservative: each source branch must fit a target branch. Unproven inclusion,
 changed definitions without known wire usage and unknown canonical directions
 require review. Removed/renamed exported definitions are flagged; this is not a

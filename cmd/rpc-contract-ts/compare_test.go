@@ -127,3 +127,91 @@ func TestComparisonCLIRejectsMalformedAndWriteFailure(t *testing.T) {
 		}
 	}
 }
+
+func TestUnknownCanonicalReferenceFailsGateWithoutMutation(t *testing.T) {
+	dir := t.TempDir()
+	raw, err := os.ReadFile("../../rpccontract/testdata/manifest.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	d := json.NewDecoder(bytes.NewReader(raw))
+	d.UseNumber()
+	var m map[string]any
+	if err := d.Decode(&m); err != nil {
+		t.Fatal(err)
+	}
+	defs := m["definitions"].(map[string]any)
+	defs["reviewLeaf"] = map[string]any{"kind": "string"}
+	defs["reviewAlias"] = map[string]any{"kind": "ref", "ref": "reviewLeaf"}
+	m["canonical"].(map[string]any)["CustomContract"] = map[string]any{"kind": "ref", "ref": "reviewAlias"}
+	write := func(name string) string {
+		t.Helper()
+		delete(m, "fingerprint")
+		data, err := json.Marshal(m)
+		if err != nil {
+			t.Fatal(err)
+		}
+		sum := sha256.Sum256(data)
+		m["fingerprint"] = "sha256:" + hex.EncodeToString(sum[:])
+		data, err = json.Marshal(m)
+		if err != nil {
+			t.Fatal(err)
+		}
+		path := filepath.Join(dir, name)
+		if err := os.WriteFile(path, data, 0600); err != nil {
+			t.Fatal(err)
+		}
+		return path
+	}
+	before := write("before.json")
+	defs["reviewLeaf"] = map[string]any{"kind": "integer", "minimum": 0, "maximum": 10}
+	after := write("after.json")
+	fixed := time.Unix(100000, 0)
+	original := map[string][]byte{}
+	for _, p := range []string{before, after} {
+		original[p], err = os.ReadFile(p)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Chtimes(p, fixed, fixed); err != nil {
+			t.Fatal(err)
+		}
+	}
+	var stdout bytes.Buffer
+	err = runWithOutput(append(compareArgs(before, after), "-fail-on-breaking"), &stdout)
+	if err == nil || !strings.Contains(err.Error(), "potentially breaking") {
+		t.Fatal("breaking gate passed", err)
+	}
+	var report struct {
+		Classification string `json:"classification"`
+		Changes        []struct {
+			Code string `json:"code"`
+		} `json:"changes"`
+	}
+	if err := json.Unmarshal(stdout.Bytes(), &report); err != nil {
+		t.Fatal(err)
+	}
+	if report.Classification != "potentially_breaking" {
+		t.Fatal(stdout.String())
+	}
+	found := false
+	for _, ch := range report.Changes {
+		found = found || ch.Code == "canonical_changed"
+	}
+	if !found {
+		t.Fatal(stdout.String())
+	}
+	for p, want := range original {
+		got, err := os.ReadFile(p)
+		if err != nil {
+			t.Fatal(err)
+		}
+		info, err := os.Stat(p)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !bytes.Equal(want, got) || !info.ModTime().Equal(fixed) {
+			t.Fatal("mutation", p)
+		}
+	}
+}
