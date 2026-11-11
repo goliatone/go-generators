@@ -42,6 +42,53 @@ GOWORK=off GOPROXY=off GOSUMDB=off go run ./cmd/rpc-contract-ts \
 
 `--check` never writes inputs or outputs, including when output is missing. Drift returns a nonzero exit status; it does not classify compatibility. Generation rejects unsupported schema versions, unresolved references, ambiguous JSON declarations and fingerprint mismatches. Explicit opaque JSON is emitted as `JsonValue`; missing type information is an error. TypeScript's `number` cannot enforce numeric ranges: typed Go adapters use the producer's `DecodeContractJSON[T]` on original input and `ValidateContractValue` before output serialization. Canonical serialized-JSON checking alone does not reproduce Go's typed decoding semantics.
 
+### Structural RPC comparison
+
+`rpccontract.Compare(baselineJSON, candidateJSON)` validates both complete
+manifests and returns a deterministic `rpc-contract-comparison/v1` report. Compare
+an old client contract with a new server contract:
+
+```sh
+go run ./cmd/rpc-contract-ts -baseline before.json -manifest after.json -fail-on-breaking
+```
+
+Comparison prints JSON to stdout and never writes files. `-out` and `--check`
+are rejected in comparison mode, even when explicitly set to empty/false. The
+existing generation `--check` remains a byte-drift check. Exit 0 means comparison
+completed; with `-fail-on-breaking`, a potentially breaking report is still printed
+and the process exits 1. Invalid manifests/flags and output errors also exit 1,
+with diagnostics on stderr. Do not redirect stdout over either input file: shell
+redirection occurs before the CLI can read or validate it.
+
+Reports contain both fingerprints, a classification and sorted changes with
+JSON-pointer paths, direction, code and explanation. Paths through references
+identify the resolved schema at the usage site. Classifications are `unchanged`,
+`compatible`, `additive` and `potentially_breaking`; the last dominates, then
+additive, then compatible. Fingerprint-only/representation changes remain visible.
+
+| Change | Request/input | Response/result |
+| --- | --- | --- |
+| Widen enum, numeric range or allowed nulls | Compatible | Potentially breaking |
+| Narrow those values | Potentially breaking | Compatible |
+| Optional property becomes required | Potentially breaking | Compatible |
+| Add optional property | Additive | Additive, except an empty closed object |
+| Remove declared property, even optional | Potentially breaking | Potentially breaking |
+| Change string encoding or receipt/result mode | Review required | Review required |
+
+New operations/definitions are additive; removal is potentially breaking.
+Shared/recursive types are checked at each known usage direction. Union inclusion
+is conservative: each source branch must fit a target branch. Unproven inclusion,
+changed definitions without known wire usage and unknown canonical directions
+require review. Removed/renamed exported definitions are flagged; this is not a
+source-compatibility guarantee for arbitrary direct generated-alias consumers.
+Presence reflects serialization, not validation. Opaque JSON and a compatible
+structural result establish no authorization, business semantics or retry safety.
+
+Go requirements come from [go.mod](go.mod). The coordinated consumer support
+boundary and release matrix are maintained in the
+[admin RPC guide](https://github.com/goliatone/go-admin/blob/main/docs/GUIDE_RPC.md#compatibility-and-support-boundary).
+The comparison API is a source candidate until its owning release is published.
+
 After R2-G is published, replace the release placeholder with its verified tag and commit that exact tool pin in the consuming application's generation recipe. Never use a moving tag for reproducible generation:
 
 ```go
